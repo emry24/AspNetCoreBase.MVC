@@ -1,8 +1,12 @@
 #account-details {
-    display: grid;
-    grid-template-columns: 2fr 5fr;
+    display: block;
     gap: 150px;
     margin-bottom: 70px;
+
+    @include lg {
+        display: grid;
+        grid-template-columns: 2fr 5fr;
+    }
 
     aside {
         border-right: 1px solid $gray-300;
@@ -56,7 +60,7 @@
                     display: grid;
                     gap: 1rem 2rem;
                     grid-template-columns: 1fr 1fr;
-                    grid-template-areas: "firstname lastname" "email phone" "bio bio" "buttons buttons";
+                    grid-template-areas: "firstname firstname" "lastname lastname" "email email" "phone phone" "bio bio" "buttons buttons";
 
                     #form-firstname {
                         grid-area: firstname;
@@ -89,6 +93,11 @@
                         display: flex;
                         gap: 20px;
                     }
+
+                    @include lg {
+                        grid-template-columns: 1fr 1fr;
+                        grid-template-areas: "firstname lastname" "email phone" "bio bio" "buttons buttons";
+                    }
                 }
             }
         }
@@ -107,7 +116,8 @@
                     display: grid;
                     gap: 1rem 2rem;
                     grid-template-columns: 1fr 1fr;
-                    grid-template-areas: "addressline_1 addressline_1" "addressline_2 addressline_2" "postalcode city" "buttons buttons";
+                    grid-template-areas: "addressline_1 addressline_1" "addressline_2 addressline_2" "postalcode postalcode" "city city" "buttons buttons";
+
 
                     #form-addressline-1 {
                         grid-area: addressline_1;
@@ -135,6 +145,11 @@
                         margin: 20px 0;
                         display: flex;
                         gap: 20px;
+                    }
+
+                    @include lg {
+                        grid-template-columns: 1fr 1fr;
+                        grid-template-areas: "addressline_1 addressline_1" "addressline_2 addressline_2" "postalcode city" "buttons buttons";
                     }
                 }
             }

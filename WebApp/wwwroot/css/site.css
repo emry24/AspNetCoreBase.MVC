@@ -1015,10 +1015,15 @@ header .container .btn-mobilemenu {
 }
 
 #account-details {
-  display: grid;
-  grid-template-columns: 2fr 5fr;
+  display: block;
   gap: 150px;
   margin-bottom: 70px;
+}
+@media (min-width: 992px) {
+  #account-details {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+  }
 }
 #account-details aside {
   border-right: 1px solid #E2E5F1;
@@ -1066,7 +1071,7 @@ header .container .btn-mobilemenu {
   display: grid;
   gap: 1rem 2rem;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: "firstname lastname" "email phone" "bio bio" "buttons buttons";
+  grid-template-areas: "firstname firstname" "lastname lastname" "email email" "phone phone" "bio bio" "buttons buttons";
 }
 #account-details .details .basic-info form .content #form-firstname {
   grid-area: firstname;
@@ -1093,6 +1098,12 @@ header .container .btn-mobilemenu {
   display: flex;
   gap: 20px;
 }
+@media (min-width: 992px) {
+  #account-details .details .basic-info form .content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "firstname lastname" "email phone" "bio bio" "buttons buttons";
+  }
+}
 #account-details .details .address-info {
   margin-top: 30px;
 }
@@ -1106,7 +1117,7 @@ header .container .btn-mobilemenu {
   display: grid;
   gap: 1rem 2rem;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: "addressline_1 addressline_1" "addressline_2 addressline_2" "postalcode city" "buttons buttons";
+  grid-template-areas: "addressline_1 addressline_1" "addressline_2 addressline_2" "postalcode postalcode" "city city" "buttons buttons";
 }
 #account-details .details .address-info form .content #form-addressline-1 {
   grid-area: addressline_1;
@@ -1129,6 +1140,12 @@ header .container .btn-mobilemenu {
   margin: 20px 0;
   display: flex;
   gap: 20px;
+}
+@media (min-width: 992px) {
+  #account-details .details .address-info form .content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "addressline_1 addressline_1" "addressline_2 addressline_2" "postalcode city" "buttons buttons";
+  }
 }
 
 footer {
