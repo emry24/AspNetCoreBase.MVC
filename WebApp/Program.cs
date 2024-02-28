@@ -1,5 +1,14 @@
+using Infrastructure.Contexts;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+
+//Register your services here.. (se connectionsstring i appsettings.json)
+builder.Services.AddDbContext<DataContext>( x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+
+
+
 
 var app = builder.Build();
 app.UseHsts();
