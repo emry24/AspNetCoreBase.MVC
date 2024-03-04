@@ -1,14 +1,14 @@
 const formErrorHandler = (element, validationResult) => {
-    let spanElement = document.querySelector(`[data-valmsg-for="${element.target.name}"]`)
+    let spanElement = document.querySelector(`[data-valmsg-for="${element.name}"]`)
 
     if (validationResult) {
-        element.target.classlist.remove('input-validation-error')
+        element.classList.remove('input-validation-error')
         spanElement.classList.remove('field-validation-error')
         spanElement.classList.add('field-validation-valid')
         spanElement.innerHTML = ''
     }
     else {
-        element.target.classlist.add('input-validation-error')
+        element.classList.add('input-validation-error')
         spanElement.classList.add('field-validation-error')
         spanElement.classList.remove('field-validation-valid')
         spanElement.innerHTML = element.dataset.valRequired
@@ -26,7 +26,7 @@ const textValidator = (element, minLength = 2) => {
 
 const emailValidator = (element) => {
     const regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    formErrorHandler(element, regEx.test(element.value)
+    formErrorHandler(element, regEx.test(element.value))
 }
 
 const passwordValidator = (element) => {
@@ -49,7 +49,7 @@ const checkboxValidator = (element) => {
     if (element.checked)
         formErrorHandler(element, true)
     else
-        formErrorHandler(element, false)    
+        formErrorHandler(element, false)
 }
 
 
@@ -70,7 +70,7 @@ inputs.forEach(input => {
 
             input.addEventListener('keyup', (e) => {
 
-                switch (e.taget.type) {
+                switch (e.target.type) {
 
                     case 'text':
                         textValidator(e.target)
@@ -82,9 +82,12 @@ inputs.forEach(input => {
 
                     case 'password':
                         passwordValidator(e.target)
+                        break;
 
                 }
             })
         }
     }
 })
+
+

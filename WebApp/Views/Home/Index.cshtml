@@ -1,1 +1,60 @@
-﻿
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section id="showcase">
+    <img class="background-image" src="images/showcase-taskmaster.svg" alt="showcase" />
+    <div class="container">
+        <div class="content">
+            <h1>@Model.Showcase.Heading</h1>
+            <p>@Model.Showcase.Description</p>
+            <a class="btn-theme-s" asp-controller="" asp-action="">Get started for free</a>
+            <h6>Largest companies use our tool to work efficiently</h6>
+            <div class="brands">
+                @foreach (var brand in Model.Showcase.Brands)
+                {
+                    <img src="@brand.Url" alt="@brand.AltText" />
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<section id="features">
+    <div class="container">
+        <h1>@Model.Features.Title</h1>
+        <p>@Model.Features.Description</p>
+        <div class="tool-features">
+            @foreach (var feature in Model.Features.FeatureItems)
+            {
+                <div class="box">
+                    <img src="@feature.Icon" alt="@feature.AltText">
+                    <h5>@feature.Title</h5>
+                    <p>@feature.Description</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section id="work-management">
+    <div class="container">
+
+        <img class="work-img" src="images/work-management_image.svg" alt="work-management">
+
+        <div class="content">
+            <h2>@Model.WorkManagement.Title</h2>
+                @foreach (var item in Model.WorkManagement.ChecklistItems)
+                {
+                <div class="check-box">
+                    <img src="@item.Icon" alt="@item.AltText" />
+                    <p>@item.Text</p>
+                </div>
+                }
+           
+            <a class="btn-theme-s" asp-controller="" asp-action="">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
