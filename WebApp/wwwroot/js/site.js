@@ -1,6 +1,17 @@
-﻿const toggleMenu = () => {
-    document.getElementById('menu').classlist.toggle('hide');
-    document.getElementById('account-buttons').classlist.toggle('hide');
+﻿//const toggleMenu = () => {
+//    document.getElementById('menu').classList.toggle('hide');
+//    document.getElementById('account-buttons').classList.toggle('hide');
+//}
+
+const toggleMenu = () => {
+    const menu = document.getElementById('menu');
+    const accountButtons = document.getElementById('account-buttons');
+
+    menu.classList.toggle('hide');
+    accountButtons.classList.toggle('hide');
+
+    menu.style.display = menu.classList.contains('hide') ? 'none' : 'block';
+    accountButtons.style.display = accountButtons.classList.contains('hide') ? 'none' : 'flex';
 }
 
 const checkScreenSize = () => {
@@ -17,5 +28,11 @@ const checkScreenSize = () => {
     }
 };
 
-window.addEventListener('resize', checkScreenSize);
+//window.addEventListener('resize', checkScreenSize);
+//checkScreenSize();
+
+window.addEventListener('resize', function () {
+    checkScreenSize();
+});
+
 checkScreenSize();

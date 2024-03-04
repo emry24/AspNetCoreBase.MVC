@@ -537,14 +537,14 @@ header {
 header .container {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "logo mobile";
+  grid-auto-columns: 1fr 1fr;
+  grid-template-areas: "logo mobile" "menu menu" "buttons buttons";
   gap: 40px;
 }
 @media (min-width: 992px) {
   header .container {
-    grid-template-columns: 1fr auto auto;
-    grid-template-areas: "logo switch mobile";
+    grid-auto-columns: 1fr 1fr 1fr;
+    grid-template-areas: "logo switch mobile" "menu menu menu" "buttons buttons buttons";
   }
 }
 @media (min-width: 1200px) {
@@ -578,13 +578,13 @@ header .container .btn-switch {
     display: block;
   }
 }
-header .container .account-buttons {
+header .container #account-buttons {
   grid-area: buttons;
   display: none;
   gap: 15px;
 }
 @media (min-width: 1200px) {
-  header .container .account-buttons {
+  header .container #account-buttons {
     display: flex;
   }
 }

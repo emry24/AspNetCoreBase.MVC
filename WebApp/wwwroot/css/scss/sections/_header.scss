@@ -4,13 +4,13 @@ header {
     .container {
         display: grid;
         align-items: center;
-        grid-template-columns: 1fr auto;
-        grid-template-areas: "logo mobile";
+        grid-auto-columns: 1fr 1fr;
+        grid-template-areas: "logo mobile" "menu menu" "buttons buttons";
         gap: 40px;
 
         @include lg {
-            grid-template-columns: 1fr auto auto;
-            grid-template-areas: "logo switch mobile";
+            grid-auto-columns: 1fr 1fr 1fr;
+            grid-template-areas: "logo switch mobile" "menu menu menu" "buttons buttons buttons";
         }
 
         @include xl {
@@ -45,7 +45,7 @@ header {
             }
         }
 
-        .account-buttons {
+        #account-buttons {
             grid-area: buttons;
             display: none;
             gap: 15px;
