@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using WebApp.Models;
+﻿using WebApp.Models;
 
 namespace WebApp.ViewModels;
 
@@ -107,6 +105,91 @@ public class HomeViewModel
             Text = "Easiest way to track time spent on tasks",
             },
 
+        }
+    };
+
+    public AppModel AppModel { get; set; } = new AppModel()
+    {
+        Image = "images/app_image.svg",
+        Heading = "Download Our App for Any Devices:",
+        AppInfo = new List<AppInfo>
+        {
+        new AppInfo
+            {
+                Store = "App Store",
+                Title = "Editor's Choice",
+                Rating = "4.7",
+                Reviews = "187K+",
+                IconUrl = "images/icons/appstore.svg",
+                AltText = "App Store",
+            },
+            new AppInfo
+            {
+                Store = "Google Play",
+                Title = "App of the Day",
+                Rating = "4.8",
+                Reviews = "30K+",
+                IconUrl = "images/icons/googleplay.svg",
+                AltText = "Google Play",
+            }
+         }
+    };
+
+    public WorkToolsModel WorkTools { get; set; } = new WorkToolsModel()
+    {
+        Heading = "Integrate Top Work Tools",
+        Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin volutpat mollis egestas. Nam\r\nluctus facilisis ultrices. Pellentesque volutpat ligula est. Mattis fermentum, at nec lacus.",
+
+        ToolsItems = new List<ToolsItem>
+        {
+            new ToolsItem
+            {
+            Image = "images/icons/google.svg",
+            AltText = "google-icon",
+            Description = "Lorem magnis pretium sed curabitur nunc facilisi nunc cursus sagittis."
+            },
+            new ToolsItem
+            {
+            Image = "images/icons/camera.svg",
+            AltText = "camera-icon",
+            Description = "In eget a mauris quis.Tortor dui tempus quis integer est sit natoque placerat dolor."
+            },
+            new ToolsItem
+            {
+            Image = "images/icons/colors-logo.svg",
+            AltText = "colors-icon",
+            Description = "Id mollis consectetur congue egestas egestas suspendisse blandit justo."
+            },
+            new ToolsItem
+            {
+            Image = "images/icons/mail-logo.svg",
+            AltText = "mail-icon",
+            Description = "Rutrum interdum tortor, sed at nulla.A cursus bibendum elit purus cras praesent."
+            },
+            new ToolsItem
+            {
+            Image = "images/icons/pages-logo.svg",
+            AltText = "paiges-icon",
+            Description = "Congue pellentesque amet, viverra curabitur quam diam scelerisque fermentum urna."
+            },
+            new ToolsItem
+            {
+            Image = "images/icons/monkey-logo.svg",
+            AltText = "monkey-icon",
+            Description = "A elementum, imperdiet enim, pretium etiam facilisi in aenean quam mauris"
+            },
+            new ToolsItem
+            {
+            Image = "images/icons/dropbox-logo.svg",
+            AltText = "dropbox-icon",
+            Description = "Ut in turpis consequat odio diam lectus elementum.Est faucibus blandit platea."
+            },
+            new ToolsItem
+            {
+            Image = "images/icons/elephant-logo.svg",
+            AltText = "elephants-icon",
+            Description = "Faucibus cursus maecenas lorem cursus nibh.Sociis sit risus id.Sit facilisis dolor arcu."
+            }
         }
     };
 }

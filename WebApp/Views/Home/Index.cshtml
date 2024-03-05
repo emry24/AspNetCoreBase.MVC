@@ -21,6 +21,7 @@
         </div>
     </div>
 </section>
+
 <section id="features">
     <div class="container">
         <h1>@Model.Features.Title</h1>
@@ -54,6 +55,76 @@
                 }
            
             <a class="btn-theme-s" asp-controller="" asp-action="">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<section class="our-app">
+    <div class="container">
+        <img class="phones col-sm-12 col-md-5 col-lg-5 col-xl-5" src="@Model.AppModel.Image" alt="Phone">
+        <div class="col-sm-12 col-md-7 col-lg-5 col-xl-5 col-xxl-4 content">
+            <h1>@Model.AppModel.Heading</h1>
+            @foreach (var appInfo in Model.AppModel.AppInfo)
+            {
+                <div class="app">
+                    <div>
+                        <p class="text-m">@appInfo.Store</p>
+                        <img src="/images/icons/rating.svg" />
+                        <h4>@appInfo.Title</h4>
+                        <p class="text-m rating">rating @appInfo.Rating, @appInfo.Reviews reviews</p>
+                    </div>
+                    <div class="app-img">
+                        <a asp-controller="" asp-action=""><img src="@appInfo.IconUrl" alt="@appInfo.AltText"></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section id="work-tools">
+    <div class="container">
+        <div class="section-title">
+            <h1>@Model.WorkTools.Heading</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin volutpat mollis egestas. Nam
+                luctus facilisis ultrices. Pellentesque volutpat ligula est. Mattis fermentum, at nec lacus.
+            </p>
+        </div>
+        <div class="grid-box">
+            @foreach (var toolsItem in Model.WorkTools.ToolsItems)
+            {
+            <div class="grid-item">
+                <img src="@toolsItem.Image" alt="@toolsItem.AltText">
+                <p>@toolsItem.Description</p>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section id="subscribe">
+    <div class="container">
+        <h1>Don't Want To Miss Anything?</h1>
+        <img src="images/icons/curly-arrows.svg" alt="">
+        <div class="grid-box">
+            <h5>Sign up for Newsletters</h5>
+            <label><input type="checkbox" name="subscribe" value="daily">Daily Newsletter</label>
+            <label><input type="checkbox" name="subscribe" value="advertise">Advertising Updates</label>
+            <label><input type="checkbox" name="subscribe" value="review">Week in Review</label>
+            <label><input type="checkbox" name="subscribe" value="event">Event Updates</label>
+            <label><input type="checkbox" name="subscribe" value="startup">Startups Weekly</label>
+            <label><input type="checkbox" name="subscribe" value="podcast">Podcasts</label>
+        </div>
+        <div class="subscribe-here">
+            <div class="email-wrapper">
+                <i class="fa-regular fa-envelope"></i>
+                <input type="text" placeholder="Your Email">
+            </div>
+            <a class="btn-theme" href="#">Subscribe*</a>
+        </div>
+        <div class="terms">
+            <label><input type="checkbox" name="terms" required> *Yes, I agree to the <a href="">terms</a> and <a href="">privacy policy.</a></label>
         </div>
     </div>
 </section>
