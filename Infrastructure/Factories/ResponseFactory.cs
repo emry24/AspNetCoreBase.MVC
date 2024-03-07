@@ -49,7 +49,7 @@ public static ResponseResult Ok()
     {
         return new ResponseResult
         {
-            Message = message ?? "Not found"
+            Message = message ?? "Not found",
             StatusCode = StatusCode.NOT_FOUND
 
         };

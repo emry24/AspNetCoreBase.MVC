@@ -26,6 +26,15 @@ public class AuthController : Controller
             return View(viewModel);
 
         return RedirectToAction("SignIn", "Auth");
+
+        //if (ModelState.IsValid)
+        //{
+        //    var result = await _userService.CreateUserAsync(viewModel.Form);
+        //    if (result.StatusCode = Infrastructure.Models.StatusCode.OK)
+        //    return RedirectToAction("SignIn", "Auth");
+        //}
+
+        //return View(viewModel);
     }
 
 
