@@ -1096,8 +1096,22 @@ header .container .btn-mobilemenu {
   }
 }
 
-/*@import './sections/_not-found.scss';
-@import './sections/_courses.scss';
+#not-found .container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+#not-found .container img {
+  width: 50%;
+}
+#not-found .container h5 {
+  padding-bottom: 30px;
+}
+
+/*@import './sections/_courses.scss';
 @import './sections/_single-course.scss';
 @import './sections/_contact.scss';*/
 #signup {

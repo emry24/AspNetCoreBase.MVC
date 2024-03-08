@@ -1,10 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WebApp.Models;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
 
 public class AuthController : Controller
 {
+    private readonly UserManager<UserEntity> _userManager;
+
+    public AuthController(UserManager<UserEntity> userManager)
+    {
+        _userManager = userManager;
+    }
 
     [HttpGet]
     [Route("/signup")]
@@ -20,21 +30,36 @@ public class AuthController : Controller
 
     [HttpPost]
     [Route("/signup")]
-    public IActionResult SignUp(SignUpViewModel viewModel)
+    public async Task<IActionResult> SignUp(SignUpViewModel viewModel)
     {
         if (!ModelState.IsValid)
+        {
+            return View(viewModel);
+        }
+            var exists = await _userManager.Users.AnyAsync(x => x.Email == viewModel.Form.Email);
+            if (exists)
+            {
+                ModelState.AddModelError("AlreadyExists", "User with the same email address already exists");
+                ViewData["ErrorMessage"] = "User with the same email address already exists";
+                return View(viewModel);
+            }
+
+            var userEntity = new UserEntity
+            {
+                FirstName = viewModel.Form.FirstName,
+                LastName = viewModel.Form.LastName,
+                Email = viewModel.Form.Email,
+                UserName = viewModel.Form.Email
+            };
+
+            var result = await _userManager.CreateAsync(userEntity, viewModel.Form.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("SignIn", "Auth");
+            }
+        
             return View(viewModel);
 
-        return RedirectToAction("SignIn", "Auth");
-
-        //if (ModelState.IsValid)
-        //{
-        //    var result = await _userService.CreateUserAsync(viewModel.Form);
-        //    if (result.StatusCode = Infrastructure.Models.StatusCode.OK)
-        //    return RedirectToAction("SignIn", "Auth");
-        //}
-
-        //return View(viewModel);
     }
 
 
