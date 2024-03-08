@@ -1175,6 +1175,7 @@ header .container .btn-mobilemenu {
 }
 #signin .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
