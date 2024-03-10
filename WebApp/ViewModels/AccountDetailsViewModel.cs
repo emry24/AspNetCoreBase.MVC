@@ -6,14 +6,16 @@ namespace WebApp.ViewModels
     {
         public string Title { get; set; } = "Account Details";
 
-        public AccountDetailsBasicInfoModel BasicInfo { get; set; } = new AccountDetailsBasicInfoModel()
-        {
-            ProfileImage = "images/profile-picture.svg",
-            FirstName = "John",
-            LastName = "Doe",
-            Email = "john@domain.com"
-        };
+        public AccountDetailsBasicInfoModel BasicInfo { get; set; } = new AccountDetailsBasicInfoModel();
+        //{
+        //    ProfileImage = "images/profile-picture.svg",
+        //    FirstName = "John",
+        //    LastName = "Doe",
+        //    Email = "john@domain.com"
+        //};
 
-        public AccountDetailsAddressInfoModel AddressInfo { get; set; } = new AccountDetailsAddressInfoModel();
+
+
+    public AccountDetailsAddressInfoModel AddressInfo { get; set; } = new AccountDetailsAddressInfoModel();
     }
 }
