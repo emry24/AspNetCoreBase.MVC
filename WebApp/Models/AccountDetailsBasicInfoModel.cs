@@ -5,8 +5,10 @@ namespace WebApp.Models
 {
     public class AccountDetailsBasicInfoModel
     {
-        [DataType(DataType.ImageUrl)]
-        public string? ProfileImage { get; set; }
+        public string UserId { get; set; } = null!;
+
+        //[DataType(DataType.ImageUrl)]
+        //public string? ProfileImage { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "First name", Prompt = "Enter your first name", Order = 0)]

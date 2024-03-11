@@ -12,6 +12,29 @@
         border-right: 1px solid $gray-300;
         padding-right: 20px;
 
+        .profile-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                position: relative;
+                z-index: 1;
+            }
+
+            a {
+                position: absolute;
+                z-index: 2;
+                bottom: 0%;
+                right: 30%;
+                background-color: white;
+                border: 1px solid $gray-300;
+                padding: 2px 8px;
+                border-radius: 50%;
+            }
+        }
+
         .profile-info {
             margin: 20px;
             text-align: center;

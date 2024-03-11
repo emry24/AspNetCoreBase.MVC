@@ -1,7 +1,7 @@
 using Infrastructure.Contexts;
 using Infrastructure.Entities;
-
-//using Infrastructure.Repositories;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,9 +18,9 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
     x.Password.RequiredLength = 8;
 }).AddEntityFrameworkStores<UserDbContext>();
 
-//builder.Services.AddScoped<AddressRepository>();
+builder.Services.AddScoped<AddressRepository>();
+builder.Services.AddScoped<AddressService>();
 //builder.Services.AddScoped<UserRepository>();
-//builder.Services.AddScoped<AddressService>();
 //builder.Services.AddScoped<UserService>();
 
 

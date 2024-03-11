@@ -1,9 +1,9 @@
 ﻿using Infrastructure.Contexts;
 using Infrastructure.Entities;
 
-//namespace Infrastructure.Repositories;
+namespace Infrastructure.Repositories;
 
-//public class AddressRepository(DataContext context) : Repo<AddressEntity>(context)
-//{
-//    private readonly DataContext _context = context;
-//}
+public class AddressRepository(UserDbContext context) : Repo<AddressEntity>(context)
+{
+    private readonly UserDbContext _context = context;
+}

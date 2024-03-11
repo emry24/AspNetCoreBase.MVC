@@ -1,4 +1,6 @@
-﻿namespace Infrastructure.Models;
+﻿using Microsoft.Extensions.ObjectPool;
+
+namespace Infrastructure.Models;
 
 public enum StatusCode
 {
