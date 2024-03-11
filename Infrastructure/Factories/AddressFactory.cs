@@ -37,7 +37,7 @@ public class AddressFactory
         {
             return new AddressModel
             {
-                //Id = entity.Id,
+                //Id = entity.UserId, 
                 StreetName = entity.StreetName,
                 PostalCode = entity.PostalCode,
                 City = entity.City

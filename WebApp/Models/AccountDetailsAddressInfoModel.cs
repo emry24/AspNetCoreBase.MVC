@@ -13,7 +13,7 @@ public class AccountDetailsAddressInfoModel
     [DataType(DataType.Text)]
     [Display(Name = "Address 2", Prompt = "Enter your address", Order = 1)]
     //[Required(ErrorMessage = "Address is required")]
-    public string AddressLine_2 { get; set; } = null!;
+    public string? AddressLine_2 { get; set; }
 
     [DataType(DataType.PostalCode)]
     [Display(Name = "Postal code", Prompt = "Enter your postal code", Order = 2)]
