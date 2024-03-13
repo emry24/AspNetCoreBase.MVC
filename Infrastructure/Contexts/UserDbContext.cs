@@ -16,7 +16,7 @@ namespace Infrastructure.Contexts
                 .HasOne(x => x.Address)
                 .WithOne(x => x.User)
                 .HasForeignKey<AddressEntity>(x => x.UserId);
-
+                //.OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
