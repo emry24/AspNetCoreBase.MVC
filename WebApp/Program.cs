@@ -3,6 +3,7 @@ using Infrastructure.Entities;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
+using WebApp.Helpers.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRouting(x => x.LowercaseUrls = true);
@@ -21,7 +22,19 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<AddressService>();
 //builder.Services.AddScoped<UserRepository>();
-//builder.Services.AddScoped<UserService>();
+//builder.Services.AddScoped<UserService
+
+builder.Services.ConfigureApplicationCookie( x =>
+{
+    x.LoginPath = "/signin";
+    x.LogoutPath = "/signout";
+    x.AccessDeniedPath = "/denied";
+
+    x.Cookie.HttpOnly = true;
+    x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    x.SlidingExpiration = true;
+});
 
 
 
@@ -31,6 +44,8 @@ app.UseStatusCodePagesWithReExecute("/error", "?statusCode={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
+app.UseUserSessionValidation();
 app.UseAuthorization();
 
 app.MapControllerRoute(

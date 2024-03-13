@@ -1,7 +1,7 @@
 ﻿@model SignInViewModel
 
 @{
-    ViewData["Title"] = Model.Title;
+    ViewData["Title"] = "Sign In To Your Account"; /* Model.Title */;
 }
 
 <section id="signin">
@@ -14,7 +14,7 @@
             </div>
         }
 
-        <form method="post" asp-controller="Auth" asp-action="SignIn" novalidate>
+        <form method="post" asp-controller="Auth" asp-action="SignIn" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" novalidate>
 
             <h1>Welcome Back</h1>
             <p>Don't have an account yet? <a asp-controller="Auth" asp-action="SignUp">Sign up here</a>.</p>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <button id="form-submit" class="btn-theme-s" type="submit">@Model.Title</button>
+                <button id="form-submit" class="btn-theme-s" type="submit">Sign In@* @Model.Title *@</button>
 
                 <a id="form-forgot-password" asp-controller="Account" asp-action="Forgot">Forgot your password?</a>
 

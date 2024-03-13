@@ -1,11 +1,9 @@
 ﻿using Infrastructure.Entities;
-using Infrastructure.Factories;
 using Infrastructure.Models;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WebApp.Models;
 using WebApp.ViewModels;
 
@@ -18,13 +16,13 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
     private readonly SignInManager<UserEntity> _signInManager = signInManager;
     private readonly AddressService _addressService = addressService;
 
-
+    #region Account Details
     [HttpGet]
     [Route("/account/details")]
     public async Task<IActionResult> Details()
     {
-        if (!_signInManager.IsSignedIn(User))
-            return RedirectToAction("SignIn", "Account");
+        //if (!_signInManager.IsSignedIn(User))
+        //    return RedirectToAction("SignIn", "Auth");
 
         var viewModel = new AccountDetailsViewModel()
         {
@@ -119,9 +117,9 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
         return View(viewModel);
 
     }
+    #endregion
 
-
-
+    #region Populate Profile Info
     private async Task<ProfileInfoModel> PopulateProfileInfoAsync()
     {
         var user = await _userManager.GetUserAsync(User);
@@ -134,6 +132,9 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
             //ProfileImageUrl = user.ProfileImageUrl,
         };
     }
+    #endregion
+
+    #region Populate Basic Info
     private async Task<AccountDetailsBasicInfoModel> PopulateBasicInfoAsync()
     {
         var user = await _userManager.GetUserAsync(User);
@@ -148,7 +149,9 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
             Biography = user.Biography
         };
     }
+    #endregion
 
+    #region Populate Address Info
     private async Task<AccountDetailsAddressInfoModel> PopulateAddressInfoAsync()
     {
         var userId = _userManager.GetUserId(User);
@@ -172,4 +175,5 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
         return null!;
 
     }
+    #endregion
 }
