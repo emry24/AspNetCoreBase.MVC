@@ -18,6 +18,10 @@ public class HomeController : Controller
     //[AllowAnonymous]
     [Route("/error")]
     public IActionResult Error404(int statusCode) => View();
+
+    //[AllowAnonymous]
+    [Route("/denied")]
+    public IActionResult AccessDenied(int statusCode) => View();
 }
 
 

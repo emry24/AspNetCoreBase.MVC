@@ -2,6 +2,7 @@ using Infrastructure.Contexts;
 using Infrastructure.Entities;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Helpers.Middlewares;
 
@@ -12,18 +13,25 @@ builder.Services.AddControllersWithViews();
 //Register your services here.. (se connectionsstring i appsettings.json)
 builder.Services.AddDbContext<UserDbContext>( x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
+
+
 builder.Services.AddDefaultIdentity<UserEntity>(x =>
 {
     x.User.RequireUniqueEmail = true;
     x.SignIn.RequireConfirmedAccount = false;
     x.Password.RequiredLength = 8;
-}).AddEntityFrameworkStores<UserDbContext>();
+})
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<UserDbContext>();
+
+
 
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<AddressService>();
 //builder.Services.AddScoped<UserRepository>();
 //builder.Services.AddScoped<UserService
 
+// COOKIES
 builder.Services.ConfigureApplicationCookie( x =>
 {
     x.LoginPath = "/signin";
@@ -36,6 +44,15 @@ builder.Services.ConfigureApplicationCookie( x =>
     x.SlidingExpiration = true;
 });
 
+// POLICYS
+builder.Services.AddAuthorization(x =>
+{
+    x.AddPolicy("SuperAdminAccess", policy => policy.RequireRole("SuperAdmin"));
+    x.AddPolicy("CIOAccess", policy => policy.RequireRole("SuperAdmin", "CIO"));
+    x.AddPolicy("AdminAccess", policy => policy.RequireRole("SuperAdmin", "CIO", "Admin"));
+    x.AddPolicy("ManagerAccess", policy => policy.RequireRole("SuperAdmin", "CIO", "Admin", "Manager"));
+    x.AddPolicy("UserAccess", policy => policy.RequireRole("SuperAdmin", "CIO", "Admin", "Manager", "User"));
+});
 
 
 var app = builder.Build();
@@ -48,7 +65,19 @@ app.UseAuthentication();
 app.UseUserSessionValidation();
 app.UseAuthorization();
 
-app.MapControllerRoute(
+// ROLES
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    string[] roles = ["SuperAdmin","CIO","Admin","Manager", "User"];
+    foreach (var role in roles)
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+}
+
+    app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
