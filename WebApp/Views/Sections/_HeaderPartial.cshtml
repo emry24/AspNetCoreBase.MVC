@@ -42,8 +42,9 @@
         <div id="account-buttons">
             @if (_signInManager.IsSignedIn(User))
             {
-                <a class="btn-theme" asp-controller="Account" asp-action="Details"><i class="fa-regular fa-user"></i><span>My Account</span></a>
-                <a class="btn-gray" asp-controller="Auth" asp-action="SignOut"><i class="fa-regular fa-arrow-right-from-bracket fa-flip-horizontal"></i><span>Sign Out</span></a>
+                <a asp-controller="Account" asp-action="Details">
+                    <img class="profile-picture" src="~/images/profile-picture.svg" />
+                </a>
             }
             else
             {

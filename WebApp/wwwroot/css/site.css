@@ -588,6 +588,12 @@ header .container #account-buttons {
     display: flex;
   }
 }
+header .container #account-buttons .profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
 header .container .btn-mobilemenu {
   grid-area: mobile;
   display: block;
@@ -1241,6 +1247,7 @@ header .container .btn-mobilemenu {
   }
 }
 #account-details aside {
+  position: relative;
   border-right: 1px solid #E2E5F1;
   padding-right: 20px;
 }
@@ -1249,6 +1256,8 @@ header .container .btn-mobilemenu {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
 }
 #account-details aside .profile-image img {
   position: relative;
@@ -1258,11 +1267,26 @@ header .container .btn-mobilemenu {
   position: absolute;
   z-index: 2;
   bottom: 0%;
-  right: 30%;
+  right: 40%;
   background-color: white;
   border: 1px solid #E2E5F1;
   padding: 2px 8px;
   border-radius: 50%;
+}
+@media (min-width: 768px) {
+  #account-details aside .profile-image a {
+    right: 40%;
+  }
+}
+@media (min-width: 992px) {
+  #account-details aside .profile-image a {
+    right: 25%;
+  }
+}
+@media (min-width: 1200px) {
+  #account-details aside .profile-image a {
+    right: 30%;
+  }
 }
 #account-details aside .profile-info {
   margin: 20px;
@@ -1403,6 +1427,8 @@ header .container .btn-mobilemenu {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
 }
 #account-security aside .profile-image img {
   position: relative;
@@ -1412,11 +1438,26 @@ header .container .btn-mobilemenu {
   position: absolute;
   z-index: 2;
   bottom: 0%;
-  right: 30%;
+  right: 40%;
   background-color: white;
   border: 1px solid #E2E5F1;
   padding: 2px 8px;
   border-radius: 50%;
+}
+@media (min-width: 768px) {
+  #account-security aside .profile-image a {
+    right: 40%;
+  }
+}
+@media (min-width: 992px) {
+  #account-security aside .profile-image a {
+    right: 25%;
+  }
+}
+@media (min-width: 1200px) {
+  #account-security aside .profile-image a {
+    right: 30%;
+  }
 }
 #account-security aside .profile-info {
   margin: 20px;
@@ -1483,12 +1524,15 @@ header .container .btn-mobilemenu {
     grid-template-areas: "current none" "new confirm" "buttons buttons";
   }
 }
+#account-security .security .security-info .delete-account {
+  padding-left: 18px;
+}
 #account-security .security .security-info .delete-account h5 {
   color: #6366F1;
 }
 #account-security .security .security-info .delete-account button {
   margin-top: 30px;
-  padding: 8px 25px 8px 25px;
+  padding: 9px 25px;
   font-size: 14px;
 }
 
