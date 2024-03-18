@@ -30,7 +30,8 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
         {
             ProfileInfo = await PopulateProfileInfoAsync()
         };
-        
+
+
         viewModel.BasicInfo ??= await PopulateBasicInfoAsync();
         viewModel.AddressInfo ??= await PopulateAddressInfoAsync();
 
@@ -183,9 +184,12 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
     #region Account Security
     [HttpGet]
     [Route("/account/security")]
-    public IActionResult Security()
+    public async Task<IActionResult> Security()
     {
-        var viewModel = new AccountSecurityViewModel();
+        var viewModel = new AccountSecurityViewModel()
+        {
+            ProfileInfo = await PopulateProfileInfoAsync()
+        };
 
         return View(viewModel);
     }
