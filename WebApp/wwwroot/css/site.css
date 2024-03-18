@@ -1383,6 +1383,115 @@ header .container .btn-mobilemenu {
   }
 }
 
+#account-security {
+  display: block;
+  gap: 150px;
+  margin-bottom: 70px;
+}
+@media (min-width: 992px) {
+  #account-security {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+  }
+}
+#account-security aside {
+  border-right: 1px solid #E2E5F1;
+  padding-right: 20px;
+}
+#account-security aside .profile-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#account-security aside .profile-image img {
+  position: relative;
+  z-index: 1;
+}
+#account-security aside .profile-image a {
+  position: absolute;
+  z-index: 2;
+  bottom: 0%;
+  right: 30%;
+  background-color: white;
+  border: 1px solid #E2E5F1;
+  padding: 2px 8px;
+  border-radius: 50%;
+}
+#account-security aside .profile-info {
+  margin: 20px;
+  text-align: center;
+}
+#account-security aside .profile-info h5 {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+#account-security aside .profile-info p {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+}
+#account-security aside nav {
+  margin-top: 50px;
+  text-align: left;
+}
+#account-security aside nav a {
+  margin: 10px 0;
+  text-align: left;
+  justify-content: flex-start;
+}
+#account-security aside nav .btn-theme-s {
+  text-align: left;
+  justify-content: flex-start;
+}
+#account-security .security {
+  margin-top: 50px;
+  width: 100%;
+}
+#account-security .security .security-info form {
+  padding: 1rem;
+}
+#account-security .security .security-info form h5 {
+  color: #6366F1;
+}
+#account-security .security .security-info form .content {
+  display: grid;
+  gap: 1rem 2rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "current current" "new new" "confirm confirm" "buttons buttons";
+}
+#account-security .security .security-info form .content #form-password {
+  grid-area: current;
+}
+#account-security .security .security-info form .content #form-new {
+  grid-area: new;
+}
+#account-security .security .security-info form .content #form-confirm {
+  grid-area: confirm;
+}
+#account-security .security .security-info form .content #form-buttons {
+  grid-area: buttons;
+  margin: 20px 0;
+  display: flex;
+  gap: 20px;
+}
+@media (min-width: 992px) {
+  #account-security .security .security-info form .content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "current none" "new confirm" "buttons buttons";
+  }
+}
+#account-security .security .security-info .delete-account h5 {
+  color: #6366F1;
+}
+#account-security .security .security-info .delete-account button {
+  margin-top: 30px;
+  padding: 8px 25px 8px 25px;
+  font-size: 14px;
+}
+
 footer {
   padding: 50px 0 30px 0;
   line-height: 160%;

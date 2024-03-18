@@ -1,0 +1,96 @@
+﻿@model AccountSecurityViewModel
+@{
+    ViewData["Title"] = $"{Model.ProfileInfo?.FirstName} {Model.ProfileInfo?.LastName}'s account security";
+}
+
+<div class="container">
+
+    <section id="account-security">
+        <aside>
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="~/images/profile-picture.svg" />
+                    @* <img src="@Model.ProfileInfo.ProfileImage" alt="@($"{Model.ProfileInfo.FirstName} {Model.ProfileInfo.LastName}")" /> *@
+                    <a class="btn-white-circle"><i class="fa-regular fa-refresh"></i></a>
+                </div>
+                <div class="profile-info">
+                    <h5>@($"{Model.ProfileInfo?.FirstName} {Model.ProfileInfo?.LastName}")</h5>
+                    <p>@Model.ProfileInfo?.Email</p>
+                </div>
+            </div>
+
+            <nav>
+                <a class="btn-transparent" asp-controller="Account" asp-action="Details"><i class="fa-regular fa-gear"></i>Account Details</a>
+                <a class="btn-theme-s" asp-controller="Account" asp-action="Security"><i class="fa-regular fa-lock"></i>Security</a>
+                <a class="btn-transparent" asp-controller="Account" asp-action="SavedCourses"><i class="fa-regular fa-bookmark"></i>Saved Courses</a>
+                <a class="btn-transparent" asp-controller="Auth" asp-action="SignOut"><i class="fa-regular fa-arrow-right-from-bracket fa-flip-horizontal"></i>Sign Out</a>
+            </nav>
+        </aside>
+
+        <div class="security">
+            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewData["ErrorMessage"]
+                </div>
+            }
+
+            @if (ViewBag.Success == true)
+            {
+                <div class="alert alert-success" role="alert">
+                    Password has been updated successfully!
+                </div>
+            }
+
+            <section class="security-info">
+                <form method="post" asp-controller="Account" asp-action="Security" novalidate>
+                    <h2>Security</h2>
+                    <h5>Password</h5>
+
+                    <div class="content">
+                        <div id="form-password" class="input-group">
+                            <label asp-for=Form!.Password></label>
+                            <span asp-validation-for="Form!.Password"></span>
+                            <input asp-for="Form!.Password" />
+                        </div>
+
+                        <div id="form-new" class="input-group">
+                            <label asp-for=Form!.NewPassword></label>
+                            <span asp-validation-for="Form!.NewPassword"></span>
+                            <input asp-for="Form!.NewPassword" />
+                        </div>
+
+                        <div id="form-confirm" class="input-group">
+                            <label asp-for=Form!.ConfirmPassword></label>
+                            <span asp-validation-for="Form!.ConfirmPassword"></span>
+                            <input asp-for="Form!.ConfirmPassword" />
+                        </div>
+
+                        <div id="form-buttons">
+                            <button class="btn-gray" type="reset">Cancel</button>
+                            <button class="btn-theme" type="submit">Change password</button>
+                        </div>
+                    </div>
+
+                </form>
+               <div class="delete-account">
+                    <h5>Delete Account</h5>
+                    <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
+
+                    <div id="form-remember" class="checkbox">
+                        <div class="checkbox-group">
+                            <input asp-for="Form!.DeleteAccount" />
+                            <label asp-for="Form!.DeleteAccount"></label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </div> 
+
+            </section>
+
+        </div>
+    </section>
+</div>
+
+@await Html.PartialAsync("_ValidationScriptPartial")
