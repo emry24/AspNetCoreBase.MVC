@@ -178,4 +178,43 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
     }
     #endregion
+
+
+    #region Account Security
+    [HttpGet]
+    [Route("/account/security")]
+    public IActionResult Security()
+    {
+        var viewModel = new AccountSecurityViewModel();
+
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    [Route("/account/security")]
+    public async Task<IActionResult> Security(AccountSecurityViewModel viewModel)
+    {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, viewModel.Form!.Password, viewModel.Form.NewPassword);
+            if (result.Succeeded)
+            {
+                await signInManager.RefreshSignInAsync(user);
+                ViewBag.Success = true;
+                ModelState.Clear();
+            }
+            else
+            {
+                ModelState.AddModelError("IncorrectValues", "Something went wrong! Unable to save data.");
+                ViewData["ErrorMessage"] = "Something went wrong! Unable to update address information";
+            }
+
+        return View(viewModel);
+    }
+    #endregion
+
 }
