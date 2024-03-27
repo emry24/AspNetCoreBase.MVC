@@ -1,4 +1,5 @@
 ﻿@model HomeViewModel
+@using WebApp.Models
 
 @{
     ViewData["Title"] = Model.Title;
@@ -103,7 +104,7 @@
     </div>
 </section>
 
-<section id="subscribe">
+@* <section id="subscribe">
     <div class="container">
         <h1>Don't Want To Miss Anything?</h1>
         <img src="images/icons/curly-arrows.svg" alt="">
@@ -127,5 +128,11 @@
             <label><input type="checkbox" name="terms" required> *Yes, I agree to the <a href="">terms</a> and <a href="">privacy policy.</a></label>
         </div>
     </div>
-</section>
+</section> *@
+
+@Html.Partial("Subscribe", Model.SubscribeModel)
+
+@* @Html.Partial("Subscribe", new SubscribeViewModel()) *@
+
+
 
