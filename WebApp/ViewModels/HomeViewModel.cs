@@ -192,4 +192,6 @@ public class HomeViewModel
             }
         }
     };
+
+    public SubscribeViewModel SubscribeModel { get; set; } = new SubscribeViewModel();
 }
