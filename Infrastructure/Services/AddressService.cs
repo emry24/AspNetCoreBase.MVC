@@ -54,11 +54,9 @@ public class AddressService(AddressRepository repository, UserManager<UserEntity
             }
 
             return null!;
-          
-            
+                
         }
         catch (Exception ex) { Debug.WriteLine("ERROR :: " + ex.Message); }
-
         return null!;
     }
 
