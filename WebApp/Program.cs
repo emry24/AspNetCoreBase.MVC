@@ -4,12 +4,15 @@ using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WebApp.Configuration;
 using WebApp.Helpers.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRouting(x => x.LowercaseUrls = true);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
+
+builder.Services.AddAutoMapper(typeof(SettingsAutoMapper));
 
 //Register your services here.. (se connectionsstring i appsettings.json)
 builder.Services.AddDbContext<UserDbContext>( x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
