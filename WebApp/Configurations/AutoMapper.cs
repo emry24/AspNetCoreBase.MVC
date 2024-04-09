@@ -9,14 +9,6 @@ public class SettingsAutoMapper : Profile
     public SettingsAutoMapper()
     {
 
-        //glöm inte att installera och config in startup
-
-        //CreateMap<CategoryDto, CategoryModel>();
-        //CreateMap<CreatorDto, CreatorModel>();
-        //CreateMap<CourseDetailsDto, CourseDetailsModel>();
-        //CreateMap<CourseDto, CourseModel>()
-        //    .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category));
-
         CreateMap<CategoryDto, CategoryModel>();
         CreateMap<CreatorDto, CreatorModel>();
         CreateMap<CourseDetailsDto, CourseDetailsModel>();
