@@ -16,7 +16,10 @@ namespace Infrastructure.Entities
         public string LastName { get; set; } = null!;
 
         public string? Biography { get; set; }
+
         public string? ProfileImageUrl { get; set; }
+
+        public bool IsExternalAccount { get; set; } = false;
 
         public AddressEntity Address { get; set; } = null!;
     }

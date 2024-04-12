@@ -44,6 +44,13 @@
 
                 <a id="form-forgot-password" asp-controller="Account" asp-action="Forgot">Forgot your password?</a>
 
+                <div class="external-signin">
+                    <h6>Or sign in with your social account</h6>
+                    <div class="providers">
+                        <a class="btn-gray" asp-action="Google" asp-controller="Auth"><i class="fa-brands fa-google">  Google</i></a>
+                        <a class="btn-gray" asp-action="Facebook" asp-controller="Auth"><i class="fa-brands fa-facebook">  Facebook</i></a>
+                    </div>
+                </div>
             </div>
 
         </form>

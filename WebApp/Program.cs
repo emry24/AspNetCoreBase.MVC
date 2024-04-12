@@ -2,8 +2,10 @@ using Infrastructure.Contexts;
 using Infrastructure.Entities;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using WebApp.Configuration;
 using WebApp.Helpers.Middlewares;
 
@@ -58,6 +60,21 @@ builder.Services.AddAuthorization(x =>
     x.AddPolicy("UserAccess", policy => policy.RequireRole("SuperAdmin", "CIO", "Admin", "Manager", "User"));
 });
 
+builder.Services.AddAuthentication().AddFacebook(x =>
+{
+    x.AppId = "791297515859482";
+    x.AppSecret = "065006deb04106a0bf9f3b6bc1efb5e7";
+    x.Fields.Add("first_name");
+    x.Fields.Add("last_name");
+});
+
+builder.Services.AddAuthentication().AddGoogle(x =>
+{
+    x.ClientId = "449878733056-o9f6crftbm4abvn4sv2pfe2ui288d76g.apps.googleusercontent.com";
+    x.ClientSecret = "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";
+    x.ClaimActions.MapJsonKey(ClaimTypes.GivenName, "first_name");
+    x.ClaimActions.MapJsonKey(ClaimTypes.Surname, "last_name");
+});
 
 var app = builder.Build();
 app.UseHsts();

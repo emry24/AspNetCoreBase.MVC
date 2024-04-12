@@ -1720,13 +1720,23 @@ header .container .btn-mobilemenu {
 #signin .container form .content hr {
   grid-area: hr;
 }
-#signin .container form .content #external-signin {
+#signin .container form .content .external-signin {
   grid-area: external;
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+#signin .container form .content .external-signin .providers {
+  display: flex;
+  flex-direction: row;
   gap: 1rem;
 }
-#signin .container form .content #external-signin a {
+#signin .container form .content .external-signin .providers a {
   flex: 1;
+}
+#signin .container form .content .external-signin .providers a i {
+  padding: 10px;
 }
 
 #account-details {
