@@ -92,7 +92,7 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
                     }
                     else
                     {
-                        address = new AddressModel //AddressEntity
+                        address = new AddressModel 
                         {
                             UserId = user.Id,
                             StreetName = viewModel.AddressInfo.AddressLine_1,
@@ -133,6 +133,7 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
             LastName = user.LastName,
             Email = user.Email!,
             //ProfileImageUrl = user.ProfileImageUrl,
+            IsExternalAccount = user.IsExternalAccount,
         };
     }
     #endregion
@@ -179,7 +180,6 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
     }
     #endregion
-
 
     #region Account Security
     [HttpGet]

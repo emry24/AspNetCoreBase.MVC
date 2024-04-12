@@ -25,7 +25,6 @@
                 grid-auto-columns: 1fr;
                 grid-template-areas: "email" "password" "remember" "button" "forgot" "hr" "external";
 
-                
 
                 #form-email {
                     grid-area: email;
@@ -54,13 +53,25 @@
                     grid-area: hr;
                 }
 
-                #external-signin {
+                .external-signin {
                     grid-area: external;
                     display: flex;
+                    flex-direction: column;
                     gap: 1rem;
+                    text-align: center;
 
-                    a {
-                        flex: 1;
+                    .providers {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 1rem;
+
+                        a {
+                            flex: 1;
+
+                            i {
+                                padding: 10px;
+                            }
+                        }
                     }
                 }
             }
