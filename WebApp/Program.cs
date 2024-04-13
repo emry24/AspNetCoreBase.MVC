@@ -36,6 +36,8 @@ builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<AddressService>();
 //builder.Services.AddScoped<UserRepository>();
 //builder.Services.AddScoped<UserService
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<CourseService>();
 
 // COOKIES
 builder.Services.ConfigureApplicationCookie( x =>
