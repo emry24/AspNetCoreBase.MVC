@@ -79,6 +79,7 @@ builder.Services.AddAuthentication().AddGoogle(x =>
 });
 
 var app = builder.Build();
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseHsts();
 app.UseStatusCodePagesWithReExecute("/error", "?statusCode={0}");
 app.UseHttpsRedirection();

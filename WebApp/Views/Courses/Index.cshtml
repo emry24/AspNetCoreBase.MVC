@@ -1,8 +1,5 @@
-﻿@* @using Infrastructure.Entities
-@using WebApi.Models *@
-@using WebApp.Models
+﻿@using WebApp.Models
 @using WebApp.Models.Courses
-@* @model ICollection<CourseViewModel> *@
 @model CourseViewModel
 
 @{
@@ -30,7 +27,7 @@
 
             <div class="forms">
 
-@*                 <div class="select">
+                <div class="select">
                     <div class="selected">All categories</div>
                     <div class="select-options">
                         <div class="option" data-value="all">All categories</div>
@@ -42,27 +39,12 @@
                             }
                         }
                     </div>
-                </div> *@
-
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>All categories</option>
-                    @if (Model.Categories != null)
-                    {
-                        foreach (var category in Model.Categories)
-                        {
-                            <option class="option" data-value="@category.CategoryName">@category.CategoryName</option>
-                        }
-                    }
-                </select>
-
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search courses"
-                           aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                        <i class="fa-regular fa-magnifying-glass"></i>
-                    </button>
                 </div>
 
+                <div class="input-search-group">
+                    <input id="searchQuery" name="searchQuery" placeholder="Search courses"/>
+                    <i class="fa-regular fa-search"></i>
+                </div>
             </div>
         </div>
 
@@ -79,8 +61,6 @@
                         {
                             <p class="best-seller text-s">Best Seller</p>
                         }
-
-
 
                         <div class="card-text">
                             <h5>@viewModel.Title</h5>
@@ -105,6 +85,7 @@
                                 </i>
                                 <i class="fa-regular fa-thumbs-up">
                                     <p class="text-s">@viewModel.LikesInProcent (@viewModel.LikesInNumbers)</p>
+                                    <p>@viewModel.Category!.CategoryName</p>
                                 </i>
                             </div>
 
@@ -130,5 +111,8 @@
     </div>
 
 </section>
+
+<script src="~/js/categories.js"></script>
+
 
 

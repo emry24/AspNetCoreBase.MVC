@@ -21,31 +21,14 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
 
     #region Get all courses
 
-    //public async Task<IActionResult> Index()
-    //{
-    //    try
-    //    {
-    //        var viewModel = new CourseViewModel();
-
-    //        using var http = new HttpClient();
-    //        var response = await http.GetAsync("https://localhost:7279/api/courses");
-    //        viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(await response.Content.ReadAsStringAsync())!;
-
-    //        return View(viewModel);
-    //    }
-    //    catch (Exception ex) { Debug.WriteLine("ERROR :: " + ex.Message); }
-    //    return null!;
-
-    //}
-
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string category = "", string searchQuery = "")
     {
         try
         {
             var viewModel = new CourseViewModel
             {
                 Categories = _mapper.Map<IEnumerable<CategoryModel>>(await _categoryService.GetCategoriesAsync()),
-                Courses = _mapper.Map<IEnumerable<CourseModel>>(await _courseService.GetCoursesAsync()),
+                Courses = _mapper.Map<IEnumerable<CourseModel>>(await _courseService.GetCoursesAsync(category, searchQuery)),
             };
 
             return View(viewModel);
