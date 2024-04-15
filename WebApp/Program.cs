@@ -36,6 +36,8 @@ builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<AddressService>();
 //builder.Services.AddScoped<UserRepository>();
 //builder.Services.AddScoped<UserService
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<CourseService>();
 
 // COOKIES
 builder.Services.ConfigureApplicationCookie( x =>
@@ -77,6 +79,7 @@ builder.Services.AddAuthentication().AddGoogle(x =>
 });
 
 var app = builder.Build();
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseHsts();
 app.UseStatusCodePagesWithReExecute("/error", "?statusCode={0}");
 app.UseHttpsRedirection();

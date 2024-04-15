@@ -531,6 +531,38 @@ form span.field-validation-error::after {
   content: "⮿";
 }
 
+.select {
+  position: relative;
+  min-width: 300px;
+  /*    background-image: ;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;*/
+}
+.select .selected {
+  padding: 5.4px 14px;
+  border-radius: 6px;
+  border: 1px solid #D4D7E5;
+  cursor: pointer;
+}
+.select .select-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #D4D7E5;
+  z-index: 9999;
+}
+.select .select-options .option {
+  padding: 10px;
+  cursor: pointer;
+}
+.select .select-options option:hover {
+  background-color: #D4D7E5;
+}
+
 header {
   padding: 15px 0;
 }
@@ -1153,6 +1185,17 @@ header .container .btn-mobilemenu {
 }
 .courses .container .courses-options .forms select:active, .courses .container .courses-options .forms select:focus, .courses .container .courses-options .forms select:checked {
   box-shadow: none;
+}
+.courses .container .courses-options .forms .input-search-group {
+  padding: 5.4px 14px;
+  border-radius: 6px;
+  border: 1px solid #D4D7E5;
+}
+.courses .container .courses-options .forms .input-search-group input {
+  border: none;
+}
+.courses .container .courses-options .forms .input-search-group input::after {
+  border: none;
 }
 @media (min-width: 992px) {
   .courses .container .courses-options {

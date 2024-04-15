@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Infrastructure.Dtos;
+using Infrastructure.Services;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -10,19 +12,24 @@ using WebApp.ViewModels;
 namespace WebApp.Controllers;
 
 //[Authorize]
-public class CoursesController(HttpClient http) : Controller
+public class CoursesController(HttpClient http, CategoryService categoryService, CourseService courseService, IMapper mapper) : Controller
 {
     private readonly HttpClient _http = http;
+    private readonly CategoryService _categoryService = categoryService;
+    private readonly CourseService _courseService = courseService;
+    private readonly IMapper _mapper = mapper;
 
-    public async Task<IActionResult> Index()
+    #region Get all courses
+
+    public async Task<IActionResult> Index(string category = "", string searchQuery = "")
     {
         try
         {
-            var viewModel = new CourseViewModel();
-
-            using var http = new HttpClient();
-            var response = await http.GetAsync("https://localhost:7279/api/courses");
-            viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(await response.Content.ReadAsStringAsync())!;
+            var viewModel = new CourseViewModel
+            {
+                Categories = _mapper.Map<IEnumerable<CategoryModel>>(await _categoryService.GetCategoriesAsync()),
+                Courses = _mapper.Map<IEnumerable<CourseModel>>(await _courseService.GetCoursesAsync(category, searchQuery)),
+            };
 
             return View(viewModel);
         }
@@ -31,6 +38,9 @@ public class CoursesController(HttpClient http) : Controller
 
     }
 
+    #endregion
+
+    #region Create course
 
     [HttpPost]
     public async Task<IActionResult> Create(CourseRegistrationFormViewModel viewModel)
@@ -56,6 +66,10 @@ public class CoursesController(HttpClient http) : Controller
         return null!;
 
     }
+
+    #endregion
+
+    #region Get one course
 
     [Route("/details")]
     public async Task<IActionResult> Details(string id)
@@ -127,4 +141,6 @@ public class CoursesController(HttpClient http) : Controller
         return null!;
 
     }
+
+    #endregion
 }

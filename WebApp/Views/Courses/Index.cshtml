@@ -1,7 +1,5 @@
-﻿@* @using Infrastructure.Entities
-@using WebApi.Models *@
-@using WebApp.Models
-@* @model ICollection<CourseViewModel> *@
+﻿@using WebApp.Models
+@using WebApp.Models.Courses
 @model CourseViewModel
 
 @{
@@ -29,39 +27,40 @@
 
             <div class="forms">
 
-                <select class="form-select">
-                    <option selected>All categories</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search courses"
-                           aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                        <i class="fa-regular fa-magnifying-glass"></i>
-                    </button>
+                <div class="select">
+                    <div class="selected">All categories</div>
+                    <div class="select-options">
+                        <div class="option" data-value="all">All categories</div>
+                        @if (Model.Categories != null)
+                        {
+                            foreach (var category in Model.Categories)
+                            {
+                                <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
+                            }
+                        }
+                    </div>
                 </div>
 
+                <div class="input-search-group">
+                    <input id="searchQuery" name="searchQuery" placeholder="Search courses"/>
+                    <i class="fa-regular fa-search"></i>
+                </div>
             </div>
         </div>
 
         <div class="courses-grid grid-12">
-            @foreach (var viewModel in Model.Courses)
+            @foreach (var viewModel in Model.Courses!)
             {
                     <article class="course-card">
                         <a asp-action="Details" asp-controller="Courses" asp-route-id="@viewModel.CourseId">
                         <img class="course-img" src="@viewModel.RatingImage" alt="">
                         <!-- <i class="fa-regular fa-bookmark favorite"></i> -->
                         <button type="button" class="fa-regular fa-bookmark favorite" data-bs-toggle="tooltip"
-                                data-bs-placement="top" data-bs-title="Favorite"></button>
+                                data-bs-placement="top" data-bs-title="Favorite" asp-action="Join" asp-controller="Courses"></button>
                         @if (viewModel.IsBestseller == true)
                         {
                             <p class="best-seller text-s">Best Seller</p>
                         }
-
-
 
                         <div class="card-text">
                             <h5>@viewModel.Title</h5>
@@ -86,6 +85,7 @@
                                 </i>
                                 <i class="fa-regular fa-thumbs-up">
                                     <p class="text-s">@viewModel.LikesInProcent (@viewModel.LikesInNumbers)</p>
+                                    <p>@viewModel.Category!.CategoryName</p>
                                 </i>
                             </div>
 
@@ -111,3 +111,8 @@
     </div>
 
 </section>
+
+<script src="~/js/categories.js"></script>
+
+
+
