@@ -4,6 +4,7 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using WebApp.Models.Courses;
@@ -21,14 +22,27 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
 
     #region Get all courses
 
-    public async Task<IActionResult> Index(string category = "", string searchQuery = "")
+    public async Task<IActionResult> Index(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 6)
     {
         try
         {
+            var courseResult = await _courseService.GetCoursesAsync(category, searchQuery, pageNumber, pageSize);
+
             var viewModel = new CourseViewModel
             {
                 Categories = _mapper.Map<IEnumerable<CategoryModel>>(await _categoryService.GetCategoriesAsync()),
-                Courses = _mapper.Map<IEnumerable<CourseModel>>(await _courseService.GetCoursesAsync(category, searchQuery)),
+                //Courses = _mapper.Map<IEnumerable<CourseModel>>(await _courseService.GetCoursesAsync(category, searchQuery)),
+                Courses = courseResult.Courses!.Select(courseDto => _mapper.Map<CourseModel>(courseDto)),
+
+                Pagination = new PaginationDto
+                {
+                    PageSize = pageSize,
+                    CurrentPage = pageNumber,
+                    TotalPages = courseResult.TotalPages,
+                    TotalItems = courseResult.TotalItems
+                },
+                Category = category,
+                SearchQuery = searchQuery
             };
 
             return View(viewModel);

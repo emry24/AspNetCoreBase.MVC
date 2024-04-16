@@ -55,8 +55,10 @@ function updateCourseByFilter() {
             const parser = new DOMParser()
             const dom = parser.parseFromString(data, 'text/html')
             const coursesGrid = document.querySelector('.courses-grid');
-
             document.querySelector('.courses-grid').innerHTML = dom.querySelector('.courses-grid').innerHTML
+
+            const pagination = dom.querySelector('.pagination') ? dom.querySelector('.pagination').innerHTML : ''
+            document.querySelector('.pagination').innerHTML = pagination
 
         })
 }

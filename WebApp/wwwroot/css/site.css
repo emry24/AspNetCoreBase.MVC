@@ -534,16 +534,23 @@ form span.field-validation-error::after {
 .select {
   position: relative;
   min-width: 300px;
-  /*    background-image: ;
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 16px;*/
 }
 .select .selected {
   padding: 5.4px 14px;
   border-radius: 6px;
   border: 1px solid #D4D7E5;
   cursor: pointer;
+  position: relative;
+}
+.select .selected:after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #9397AD;
 }
 .select .select-options {
   display: none;
@@ -1150,13 +1157,14 @@ header .container .btn-mobilemenu {
 }
 
 .courses {
-  padding: 5rem 0;
+  padding: 2rem 0;
 }
 .courses .container .courses-bread {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   gap: 10px;
+  padding-bottom: 2rem;
 }
 .courses .container .courses-bread a {
   color: inherit;
@@ -1177,6 +1185,7 @@ header .container .btn-mobilemenu {
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  padding-bottom: 1rem;
 }
 @media (min-width: 768px) {
   .courses .container .courses-options .forms {
@@ -1194,27 +1203,34 @@ header .container .btn-mobilemenu {
 .courses .container .courses-options .forms .input-search-group input {
   border: none;
 }
-.courses .container .courses-options .forms .input-search-group input::after {
-  border: none;
+.courses .container .courses-options .forms .input-search-group input:focus {
+  outline: none;
+}
+@media (min-width: 992px) {
+  .courses .container .courses-options .forms {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  .courses .container .courses-options .forms h1 {
+    flex-grow: 1;
+  }
+}
+.courses .container .courses-options .forms input {
+  border-right: 0;
+  border-color: #D4D7E5;
+}
+.courses .container .courses-options .forms button {
+  border-left: 0;
+  border-color: #D4D7E5;
 }
 @media (min-width: 992px) {
   .courses .container .courses-options {
     flex-direction: row;
+    justify-content: space-between;
   }
-  .courses .container .courses-options h1 {
-    flex-grow: 1;
-  }
-}
-.courses .container .courses-options input {
-  border-right: 0;
-  border-color: #D4D7E5;
-}
-.courses .container .courses-options button {
-  border-left: 0;
-  border-color: #D4D7E5;
 }
 .courses .container .courses-grid {
-  padding: 3rem 0;
+  padding: 1rem 0;
   column-gap: 20px;
   row-gap: 40px;
 }
@@ -1313,6 +1329,27 @@ header .container .btn-mobilemenu {
     grid-column: span 4;
   }
 }
+.courses .container .pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.courses .container .pagination .number-active {
+  padding: 10px 20px;
+  background-color: #6366F1;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+}
+.courses .container .pagination .number {
+  padding: 10px 20px;
+  background-color: #E2E5F1;
+  color: black;
+  font-weight: 600;
+  border-radius: 6px;
+}
 
 .work-with-us {
   padding: 5rem 0;
@@ -1361,6 +1398,7 @@ header .container .btn-mobilemenu {
   }
 }
 
+/*}*/
 #course-showcase {
   position: relative;
   overflow: hidden;

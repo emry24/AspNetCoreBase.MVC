@@ -6,10 +6,10 @@
     ViewData["Title"] = "Courses";
 }
 
-<a asp-action="Create" asp-controller="Courses">New Course</a>
+@* <a asp-action="Create" asp-controller="Courses">New Course</a>
 <br />
 <hr />
-<br />
+<br /> *@
 
 
 <section class="courses">
@@ -48,53 +48,73 @@
             </div>
         </div>
 
-        <div class="courses-grid grid-12">
-            @foreach (var viewModel in Model.Courses!)
-            {
+        @if (Model.Courses != null)
+        {
+            <div class="courses-grid grid-12">
+                @foreach (var viewModel in Model.Courses!)
+                {
                     <article class="course-card">
                         <a asp-action="Details" asp-controller="Courses" asp-route-id="@viewModel.CourseId">
-                        <img class="course-img" src="@viewModel.RatingImage" alt="">
-                        <!-- <i class="fa-regular fa-bookmark favorite"></i> -->
-                        <button type="button" class="fa-regular fa-bookmark favorite" data-bs-toggle="tooltip"
-                                data-bs-placement="top" data-bs-title="Favorite" asp-action="Join" asp-controller="Courses"></button>
-                        @if (viewModel.IsBestseller == true)
+                            <img class="course-img" src="@viewModel.RatingImage" alt="">
+                            <!-- <i class="fa-regular fa-bookmark favorite"></i> -->
+                            <button type="button" class="fa-regular fa-bookmark favorite" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" data-bs-title="Favorite" asp-action="Join" asp-controller="Courses"></button>
+                            @if (viewModel.IsBestseller == true)
+                            {
+                                <p class="best-seller text-s">Best Seller</p>
+                            }
+
+                            <div class="card-text">
+                                <h5>@viewModel.Title</h5>
+                                <p class="text-s">By @viewModel.Creator?.CreatorName</p>
+                                <div class="prices">
+                                    @if (viewModel.Details?.DiscountedPrice > 0)
+                                    {
+                                        <p class="text-lg discount-price">$@viewModel.Details?.DiscountedPrice</p>
+                                        <p class="text-lg original-price">$@viewModel.Details?.Price</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-lg">$@viewModel.Details?.Price</p>
+                                    }
+
+                                </div>
+                                <span class="border border-1"></span>
+
+                                <div class="card-info">
+                                    <i class="fa-regular fa-clock">
+                                        <p class="text-s">@viewModel.DurationHours hours</p>
+                                    </i>
+                                    <i class="fa-regular fa-thumbs-up">
+                                        <p class="text-s">@viewModel.LikesInProcent (@viewModel.LikesInNumbers)</p>
+                                    </i>
+                                </div>
+
+                            </div>
+                        </a>
+                    </article>
+                }
+
+            </div>
+
+            if (Model.Pagination != null && Model.Pagination.TotalPages > 1)
+            {
+                <div class="pagination">
+                    @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
+                    {
+                        if (i == Model.Pagination.CurrentPage)
                         {
-                            <p class="best-seller text-s">Best Seller</p>
+                            <span class="number-active">@i</span>
                         }
-
-                        <div class="card-text">
-                            <h5>@viewModel.Title</h5>
-                            <p class="text-s">By @viewModel.Creator?.CreatorName</p>
-                            <div class="prices">
-                                @if (viewModel.Details?.DiscountedPrice > 0)
-                                {
-                                    <p class="text-lg discount-price">$@viewModel.Details?.DiscountedPrice</p>
-                                    <p class="text-lg original-price">$@viewModel.Details?.Price</p>
-                                }
-                                else
-                                {
-                                    <p class="text-lg">$@viewModel.Details?.Price</p>
-                                }
-
-                            </div>
-                            <span class="border border-1"></span>
-
-                            <div class="card-info">
-                                <i class="fa-regular fa-clock">
-                                    <p class="text-s">@viewModel.DurationHours hours</p>
-                                </i>
-                                <i class="fa-regular fa-thumbs-up">
-                                    <p class="text-s">@viewModel.LikesInProcent (@viewModel.LikesInNumbers)</p>
-                                    <p>@viewModel.Category!.CategoryName</p>
-                                </i>
-                            </div>
-
-                        </div>
-                    </a>
-                    </article>    
+                        else
+                        {
+                            <a class="number" href="@Url.Action("Index", new { pageNumber = i, pageSize = Model.Pagination.PageSize })">@i</a>
+                        }
+                    }
+                </div>
             }
+        }
 
-        </div>
     </div>
 
 </section>
