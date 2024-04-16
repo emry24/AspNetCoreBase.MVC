@@ -31,8 +31,8 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
             var viewModel = new CourseViewModel
             {
                 Categories = _mapper.Map<IEnumerable<CategoryModel>>(await _categoryService.GetCategoriesAsync()),
-                Courses = _mapper.Map<IEnumerable<CourseModel>>(await _courseService.GetCoursesAsync(category, searchQuery)),
-                //Courses = courseResult.Courses,
+                //Courses = _mapper.Map<IEnumerable<CourseModel>>(await _courseService.GetCoursesAsync(category, searchQuery)),
+                Courses = courseResult.Courses!.Select(courseDto => _mapper.Map<CourseModel>(courseDto)),
 
                 Pagination = new PaginationDto
                 {
@@ -40,7 +40,9 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
                     CurrentPage = pageNumber,
                     TotalPages = courseResult.TotalPages,
                     TotalItems = courseResult.TotalItems
-                }
+                },
+                Category = category,
+                SearchQuery = searchQuery
             };
 
             return View(viewModel);
@@ -49,24 +51,6 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
         return null!;
 
     }
-
-
-    //public async Task<IActionResult> Index(string category = "", string searchQuery = "")
-    //{
-    //    try
-    //    {
-    //        var viewModel = new CourseViewModel
-    //        {
-    //            Categories = _mapper.Map<IEnumerable<CategoryModel>>(await _categoryService.GetCategoriesAsync()),
-    //            Courses = _mapper.Map<IEnumerable<CourseModel>>(await _courseService.GetCoursesAsync(category, searchQuery)),
-    //        };
-
-    //        return View(viewModel);
-    //    }
-    //    catch (Exception ex) { Debug.WriteLine("ERROR :: " + ex.Message); }
-    //    return null!;
-
-    //}
 
     #endregion
 

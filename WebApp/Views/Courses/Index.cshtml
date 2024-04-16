@@ -6,10 +6,10 @@
     ViewData["Title"] = "Courses";
 }
 
-<a asp-action="Create" asp-controller="Courses">New Course</a>
+@* <a asp-action="Create" asp-controller="Courses">New Course</a>
 <br />
 <hr />
-<br />
+<br /> *@
 
 
 <section class="courses">
@@ -87,7 +87,7 @@
                                     </i>
                                     <i class="fa-regular fa-thumbs-up">
                                         <p class="text-s">@viewModel.LikesInProcent (@viewModel.LikesInNumbers)</p>
-                                        <p>@viewModel.Category!.CategoryName</p>
+                                        @* <p>@viewModel.Category!.CategoryName</p> *@
                                     </i>
                                 </div>
 

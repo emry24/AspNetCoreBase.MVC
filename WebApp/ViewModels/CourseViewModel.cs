@@ -10,4 +10,12 @@ public class CourseViewModel
     public IEnumerable<CourseModel>? Courses { get; set; }
     public PaginationDto? Pagination { get; set; }
 
+
+
+
+
+
+    public string Category { get; set; }
+    public string SearchQuery { get; set; }
+
 }
