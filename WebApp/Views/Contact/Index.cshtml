@@ -1,0 +1,88 @@
+﻿@model ContactViewModel
+@using WebApp.Models
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+    <section id="contact">
+        <div class="container">
+            <div class="courses-bread">
+                <a href="#"><span><i class="fa-regular fa-house me-2"></i>Home</span></a>
+                <i class="fa-regular fa-angles-right"></i>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="contact-section">
+                <div class="contact-us">
+                    <h1>Contact Us</h1>  
+                    <div class="contact-box">
+                        <div class="list-icon"><i class="fa-regular fa-envelope"></i></div>
+                        <div class="list-info">
+                            <h4>Email Us</h4>
+                            <p>Please feel free to drop us a line. <br> We will respond as soon as possible.</p>
+                            <a href="">Leave a message<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-box">
+                        <div class="list-icon"><i class="fa-regular fa-person-chalkboard"></i></div>
+                        <div class="list-info">
+                            <h4>Careers</h4>
+                            <p>Sit ac ipsum leo lorem magna nunc <br> mattis maecenas non vestibulum.</p>
+                            <a href="">Send an application<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form method="post" asp-controller="" asp-action="ContactInfo">
+
+
+                        <div class="content">
+                            <h2>Get In Contact With Us</h2>
+                            <div id="form-fullname" class="input-group">
+                                <label asp-for="Contact.FullName">Full name</label>
+                                <span asp-validation-for="Contact.FullName"></span>
+                                <input asp-for="Contact.FullName" />
+                            </div>
+
+                            <div id="form-email" class="input-group">
+                                <label asp-for="Contact.Email">Email address</label>
+                                <span asp-validation-for="Contact.Email"></span>
+                                <input asp-for="Contact.Email" />
+                            </div>
+
+                            <div id="form-service" class="input-group">
+                                <label asp-for="Contact.Service">Service <span>(Optional)</span></label>
+                                <span asp-validation-for="Contact.Service"></span>
+                                <!-- <input asp-for="ContactInfo.Service" /> -->
+
+                            </div>
+
+                            <select class="input-group form-select">
+                                <option selected>Choose the service you are interested in</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+
+                            <div id="form-message" class="input-group">
+                                <label asp-for="Contact.Message">Message</label>
+                                <textarea asp-for="Contact.Message"></textarea>
+                            </div>
+
+                            <div id="form-button" class="form-button">
+                                <button class="btn-theme" type="reset">Send Contact Request</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d25238.765582909677!2d-122.42279503723903!3d37.746764032837596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ssv!2sse!4v1709162677627!5m2!1ssv!2sse"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </section>
