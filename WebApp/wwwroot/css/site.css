@@ -1699,11 +1699,15 @@ header .container .btn-mobilemenu {
 }
 #contact .container {
   padding-top: 50px;
+  /*        span {
+      color: $gray-600;
+      font-weight: 400;
+  }*/
 }
 #contact .container .courses-bread i {
   color: #9397AD;
 }
-#contact .container span {
+#contact .container .gray-span {
   color: #9397AD;
   font-weight: 400;
 }

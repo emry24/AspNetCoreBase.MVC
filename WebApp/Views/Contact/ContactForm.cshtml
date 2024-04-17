@@ -1,0 +1,80 @@
+﻿@model ContactFormViewModel
+@using WebApp.Models
+
+@{
+    ViewData["Title"] = "Contact Form";
+}
+
+
+
+<div class="contact-form">
+    <form asp-action="ContactForm" asp-controller="Contact" method="post">
+
+        @* onsubmit="return validateForm()" method="post" *@
+        <div class="content">
+            <h2>Get In Contact With Us</h2>
+            <div id="form-fullname" class="input-group">
+                <label asp-for="FullName">Full name</label>
+                <span asp-validation-for="FullName"></span>
+                <input asp-for="FullName" />
+            </div>
+
+            <div id="form-email" class="input-group">
+                <label asp-for="Email">Email address</label>
+                <span asp-validation-for="Email"></span>
+                <input asp-for="Email" />
+            </div>
+
+            <div id="form-service" class="input-group">
+                <label asp-for="Service">Service <span>(Optional)</span></label>
+                <span asp-validation-for="Service"></span>
+                <!-- <input asp-for="ContactInfo.Service" /> -->
+
+            </div>
+
+            <select asp-for="Service" class="input-group form-select">
+                <option value="" selected>Choose the service you are interested in</option>
+                <option value="Service1">Service 1</option>
+                <option value="Service2">Service 2</option>
+                <option value="Service3">Service 3</option>
+            </select>
+
+            <div id="form-message" class="input-group">
+                <label asp-for="Message">Message</label>
+                <textarea asp-for="Message"></textarea>
+                <span asp-validation-for="Message"></span>
+            </div>
+
+            <div id="form-button" class="form-button">
+                <button class="btn-theme" type="submit">Send Contact Request</button>
+            </div>
+        </div>
+
+    </form>
+    <span class="information">
+        @if (ViewData["Status"]?.ToString() == "Success")
+        {
+            <span class="alert alert-success">
+                Your contact request has been sent
+            </span>
+        }
+        else if (ViewData["Status"]?.ToString() == "Invalid")
+        {
+            <span class="alert alert-danger">
+                You must fill in the required fields
+            </span>
+        }
+        else if (ViewData["Status"]?.ToString() == "ConnectionFailed")
+        {
+            <span class="alert alert-danger">
+                Unable to connect to the server.Please try again later.
+            </span>
+        }
+        else if (ViewData["Status"]?.ToString() == "Unauthorized")
+        {
+            <span class="alert alert-danger">
+                Something went wrong. Please contact web admin.
+            </span>
+        }
+    </span>
+</div>

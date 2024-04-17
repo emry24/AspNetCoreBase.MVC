@@ -7,7 +7,7 @@
     <section id="contact">
         <div class="container">
             <div class="courses-bread">
-                <a href="#"><span><i class="fa-regular fa-house me-2"></i>Home</span></a>
+                <a href="#"><span class="grey-span"><i class="fa-regular fa-house me-2"></i>Home</span></a>
                 <i class="fa-regular fa-angles-right"></i>
                 <a href="#">Contact</a>
             </div>
@@ -33,50 +33,11 @@
                     </div>
                 </div>
 
-                <div class="contact-form">
-                    <form method="post" asp-controller="" asp-action="ContactInfo">
 
 
-                        <div class="content">
-                            <h2>Get In Contact With Us</h2>
-                            <div id="form-fullname" class="input-group">
-                                <label asp-for="Contact.FullName">Full name</label>
-                                <span asp-validation-for="Contact.FullName"></span>
-                                <input asp-for="Contact.FullName" />
-                            </div>
+            @Html.Partial("ContactForm", Model.ContactFormModel)
 
-                            <div id="form-email" class="input-group">
-                                <label asp-for="Contact.Email">Email address</label>
-                                <span asp-validation-for="Contact.Email"></span>
-                                <input asp-for="Contact.Email" />
-                            </div>
 
-                            <div id="form-service" class="input-group">
-                                <label asp-for="Contact.Service">Service <span>(Optional)</span></label>
-                                <span asp-validation-for="Contact.Service"></span>
-                                <!-- <input asp-for="ContactInfo.Service" /> -->
-
-                            </div>
-
-                            <select class="input-group form-select">
-                                <option selected>Choose the service you are interested in</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-
-                            <div id="form-message" class="input-group">
-                                <label asp-for="Contact.Message">Message</label>
-                                <textarea asp-for="Contact.Message"></textarea>
-                            </div>
-
-                            <div id="form-button" class="form-button">
-                                <button class="btn-theme" type="reset">Send Contact Request</button>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
             </div>
         </div>
 
@@ -86,3 +47,5 @@
             referrerpolicy="no-referrer-when-downgrade"></iframe>
 
     </section>
+
+@await Html.PartialAsync("_ValidationScriptPartial")
