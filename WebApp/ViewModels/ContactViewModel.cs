@@ -6,6 +6,6 @@ public class ContactViewModel
 {
     public string Title { get; set; } = "Contact";
 
-    public ContactFormViewModel ContactFormModel { get; set; } = new ContactFormViewModel();
+    public ContactFormViewModel ContactForm { get; set; } = new ContactFormViewModel();
 
 }

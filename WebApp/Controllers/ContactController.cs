@@ -49,6 +49,13 @@ public class ContactController(HttpClient http) : Controller
             ViewData["Status"] = "Invalid";
         }
 
-        return View("ContactForm", viewModel);
+        var contactViewModel = new ContactViewModel
+        {
+            Title = "Contact",
+            ContactForm = viewModel
+        };
+
+        //return View("ContactForm", viewModel);
+        return View("Index", contactViewModel);
     }
 }
