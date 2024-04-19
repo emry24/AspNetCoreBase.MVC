@@ -61,6 +61,14 @@ public class HomeController(HttpClient http) : Controller
             ViewData["Status"] = "Invalid";
         }
 
+        //var homeViewModel = new HomeViewModel
+        //{
+        //    Title = "Home",
+        //    SubscribeModel = viewModel
+        //};
+
+        //return View("Index", homeViewModel);
+
         return View("Subscribe", viewModel);
     }
 

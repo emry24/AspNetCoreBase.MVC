@@ -1,0 +1,51 @@
+﻿@model ContactViewModel
+@using WebApp.Models
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+    <section id="contact">
+        <div class="container">
+            <div class="courses-bread">
+                <a href="#"><span class="grey-span"><i class="fa-regular fa-house me-2"></i>Home</span></a>
+                <i class="fa-regular fa-angles-right"></i>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="contact-section">
+                <div class="contact-us">
+                    <h1>Contact Us</h1>  
+                    <div class="contact-box">
+                        <div class="list-icon"><i class="fa-regular fa-envelope"></i></div>
+                        <div class="list-info">
+                            <h4>Email Us</h4>
+                            <p>Please feel free to drop us a line. <br> We will respond as soon as possible.</p>
+                            <a href="">Leave a message<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-box">
+                        <div class="list-icon"><i class="fa-regular fa-person-chalkboard"></i></div>
+                        <div class="list-info">
+                            <h4>Careers</h4>
+                            <p>Sit ac ipsum leo lorem magna nunc <br> mattis maecenas non vestibulum.</p>
+                            <a href="">Send an application<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            @Html.Partial("ContactForm", Model.ContactForm)
+
+
+            </div>
+        </div>
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d25238.765582909677!2d-122.42279503723903!3d37.746764032837596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ssv!2sse!4v1709162677627!5m2!1ssv!2sse"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </section>
+
+@await Html.PartialAsync("_ValidationScriptPartial")
