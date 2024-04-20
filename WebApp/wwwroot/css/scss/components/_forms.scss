@@ -15,7 +15,7 @@ form {
                 top: 0;
                 right: 0;
                 @include text-s;
-                color: $danger;
+                color: var(--color-danger);
             }
         }
     }
@@ -36,11 +36,11 @@ form {
 
                 &.input-validation-error {
                     position: relative;
-                    box-shadow: 0 0 0 0.036rem $danger;
-                    color: $danger;
+                    box-shadow: 0 0 0 0.036rem var(--color-danger-dark);
+                    color: var(--color-danger-dark);
 
                     &::placeholder {
-                        color: $danger;
+                        color: var(--color-danger-dark);
                     }
                 }
             }
@@ -56,7 +56,7 @@ form {
 
             &.field-validation-error {
                 @include text-s;
-                color: $danger;
+                color: var(--color-danger-dark);
 
                 &::after {
                     position: absolute;
@@ -79,7 +79,9 @@ form {
     input {
         padding: 1rem;
         border-radius: 0.5rem !important;
-        border: 0.063rem solid $gray-400;
+        border: 0.063rem solid var(--color-gray-400);
+        background-color: var(--color-gray-100);
+        color: var(--color-gray-700);
 
         &::placeholder {
             opacity: 0.4;
@@ -87,36 +89,45 @@ form {
 
         &.input-validation-error {
             position: relative;
-            border: 0.063rem solid $danger !important;
-            color: $danger;
+            border: 0.063rem solid var(--color-danger-dark) !important;
+            color: var(--color-danger);
 
             &::placeholder {
-                color: $danger;
+                color: var(--color-danger-dark);
             }
         }
 
         &:focus {
             outline: none;
-            border: 0.063rem solid $gray-600;
+            border: 0.063rem solid var(--color-gray-600);
         }
+    }
+
+    .form-select {
+        border: 0.063rem solid var(--color-gray-400);
+        background-color: var(--color-gray-100);
+        color: var(--color-gray-700);
+        padding-bottom: 13px;
     }
 
     textarea {
         padding: 1rem;
         border-radius: 0.5rem !important;
-        border: 0.063rem solid $gray-400;
+        border: 0.063rem solid var(--color-gray-400);
         resize: none;
+        background-color: var(--color-gray-100);
+        color: var(--color-gray-700);
 
         &::placeholder {
             opacity: 0.4;
         }
 
         &.input-validation-error {
-            border: 0.063rem solid $danger !important;
-            color: $danger;
+            border: 0.063rem solid var(--color-danger-dark) !important;
+            color: var(--color-danger-dark);
 
             &::placeholder {
-                color: $danger;
+                color: var(--color-danger-dark);
             }
         }
     }
@@ -128,7 +139,7 @@ form {
             top: 0;
             right: 0;
             @include text-s;
-            color: $danger;
+            color: var(--color-danger-dark);
 
             &::after {
                 position: absolute;
@@ -150,7 +161,7 @@ form {
     .selected {
         padding: 5.4px 14px;
         border-radius: 6px;
-        border: 1px solid $gray-400;
+        border: 1px solid var(--color-gray-400);
         cursor: pointer;
         position: relative;
 
@@ -161,8 +172,8 @@ form {
             top: 50%;
             transform: translateY(-50%);
             border-left: 5px solid transparent;
-            border-right:5px solid transparent;
-            border-top: 5px solid $gray-600;
+            border-right: 5px solid transparent;
+            border-top: 5px solid var(--color-gray-600);
         }
     }
 
@@ -173,7 +184,7 @@ form {
         left: 0;
         right: 0;
         background-color: white;
-        border: 1px solid $gray-400;
+        border: 1px solid var(--color-gray-400);
         z-index: 9999;
 
         .option {
@@ -182,10 +193,13 @@ form {
         }
 
         option:hover {
-            background-color: $gray-400;
+            background-color: var(--color-gray-400);
         }
     }
 }
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 #contact {
-    background-color: $gray-100;
+    background-color: var(--color-gray-100);
 
     .container {
         padding-top: 50px;
@@ -7,22 +7,19 @@
         .courses-bread {
 
             i {
-                color: $gray-600;
+                color: var(--color-gray-600);
             }
         }
-        /*        span {
-            color: $gray-600;
-            font-weight: 400;
-        }*/
 
         .gray-span {
-            color: $gray-600;
+            color: var(--color-gray-600);
             font-weight: 400;
         }
 
         .contact-section {
             display: flex;
             flex-direction: column;
+
 
             @include lg {
                 display: flex;
@@ -59,8 +56,8 @@
                         display: inline-flex;
                         justify-content: center;
                         align-items: center;
-                        color: $theme;
-                        background-color: $white;
+                        color: var(--color-theme);
+                        background-color: var(--color-white);
                         border-radius: 50%;
                         border: none;
                         font-size: 25px;
@@ -107,7 +104,7 @@
 
                 .content {
                     padding: 30px 10px;
-                    background-color: $white;
+                    background-color: var(--color-gray-000);
 
                     @include sm {
                         padding: 50px 80px;
@@ -119,6 +116,10 @@
                         textarea {
                             height: 150px;
                         }
+                    }
+
+                    .form-service {
+                        background-color: var(--color-gray-800);
                     }
 
                     .form-button {

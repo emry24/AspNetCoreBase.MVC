@@ -1,4 +1,7 @@
-﻿
+﻿@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+    var isDark = (themeMode == "dark") ? true : false;
+}
 
 @* @{
     bool isRoot = Context.Request.Path.Value!.Equals("/");
@@ -8,7 +11,7 @@
 
 <header>
     <div class="container">
-        <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/silicon-logo-light_theme.svg" alt="Silicon"></a>
+        <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/@(isDark ? "silicon-logo-dark_theme.svg" : "silicon-logo-light_theme.svg")" alt="Silicon"></a>
 
         <div id="menu">
             <nav>
@@ -30,10 +33,10 @@
             </nav>
         </div>
 
-        <div class="btn-switch">
+        <div id="theme-switch" class="btn-switch">
             <label>Light</label>
             <label class="switch" for="switch-mode">
-                <input type="checkbox" id="switch-mode" />
+                <input type="checkbox" id="switch-mode" checked="@isDark" />
                 <span class="slider round"></span>
             </label>
             <label>Dark</label>
