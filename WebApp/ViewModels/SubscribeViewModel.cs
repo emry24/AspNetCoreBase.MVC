@@ -27,7 +27,4 @@ public class SubscribeViewModel
     [Display(Name = "Podcasts")]
     public bool Podcasts { get; set; }
 
-    //[Display(Name = "I agree to the Terms & Conditions.>")]
-    //[CheckBoxRequired(ErrorMessage = "You must accept the terms and conditions.")]
-    //public bool IsSubscribed { get; set; } = false;
 }

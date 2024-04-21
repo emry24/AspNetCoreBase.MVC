@@ -55,7 +55,6 @@ public class ContactController(HttpClient http) : Controller
             ContactForm = viewModel
         };
 
-        //return View("ContactForm", viewModel);
         return View("Index", contactViewModel);
     }
 }

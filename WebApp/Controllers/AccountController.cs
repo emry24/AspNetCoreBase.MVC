@@ -21,8 +21,6 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
     [Route("/account/details")]
     public async Task<IActionResult> Details()
     {
-        //if (!_signInManager.IsSignedIn(User))
-        //    return RedirectToAction("SignIn", "Auth");
 
         var claims = HttpContext.User.Identities.FirstOrDefault();
 

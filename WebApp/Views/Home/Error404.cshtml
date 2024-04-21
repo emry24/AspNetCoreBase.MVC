@@ -1,10 +1,15 @@
 ﻿@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+    var isDark = (themeMode == "dark") ? true : false;
+}
+
+@{
     ViewData["Title"] = "Ooops! Page was not found";
 }
 
 <section id="not-found">
     <div class="container">
-        <img src="images/404.svg" alt="">
+        <img src="~/images/@(isDark ? "404-dark.svg" : "404.svg")" alt="" />
         <h2>Ooops!</h2>
         <h5>The page you are looking for is not available</h5>
         <a class="btn-theme-s" asp-controller="Home" asp-action="Index"><i class="fa-sharp fa-light fa-house"></i>Go to homepage</a>
