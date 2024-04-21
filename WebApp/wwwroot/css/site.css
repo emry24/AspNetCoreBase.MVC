@@ -2335,7 +2335,12 @@ header .container .btn-mobilemenu {
 #account-security .security .security-info .delete-account h5 {
   color: var(--color-theme);
 }
-#account-security .security .security-info .delete-account button {
+#account-security .security .security-info .delete-account form {
+  padding-left: 0px;
+  padding-top: 0px;
+}
+#account-security .security .security-info .delete-account form button {
+  width: 100px;
   margin-top: 30px;
   padding: 9px 25px;
   font-size: 14px;

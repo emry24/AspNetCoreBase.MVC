@@ -133,10 +133,16 @@
                     color: var(--color-theme);
                 }
 
-                button {
-                    margin-top: 30px;
-                    padding: 9px 25px;
-                    font-size: 14px;
+                form {
+                    padding-left: 0px;
+                    padding-top: 0px;
+
+                    button {
+                        width: 100px;
+                        margin-top: 30px;
+                        padding: 9px 25px;
+                        font-size: 14px;
+                    }
                 }
             }
         }

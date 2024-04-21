@@ -7,6 +7,7 @@ public class SubscribeViewModel
 {
     [Required]
     [Display(Name = "Email", Prompt = "Your Email")]
+
     public string Email { get; set; } = null!;
 
     [Display(Name = "Daily Newletter")]

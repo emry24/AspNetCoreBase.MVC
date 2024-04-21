@@ -91,45 +91,6 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
         return null!;
     }
 
-
-    //[HttpPost]
-    //public async Task<IActionResult> Create(CourseRegistrationFormViewModel viewModel)
-    //{
-    //    try
-    //    {
-    //        if (ModelState.IsValid)
-    //        {
-    //            var tokenResponse = await _http.SendAsync(new HttpRequestMessage 
-    //            { 
-    //                RequestUri = new Uri("https://localhost:7279/api/auth"),
-    //                Method = HttpMethod.Post 
-    //            });
-
-    //            if (tokenResponse.IsSuccessStatusCode)
-    //            {
-    //                HttpContext.Session.SetString("token", await tokenResponse.Content.ReadAsStringAsync());
-    //            }
-
-    //            _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
-
-    //            //using var http = new HttpClient();
-
-    //            var json = JsonConvert.SerializeObject(viewModel);
-    //            using var content = new StringContent(json, Encoding.UTF8, "application/json");
-    //            var response = await http.PostAsync("https://localhost:7279/api/courses", content);
-    //            if (response.IsSuccessStatusCode)
-    //            {
-    //                return RedirectToAction("Index", "Courses");
-    //            }
-    //        }
-
-    //        return View(viewModel);
-    //    }
-    //    catch (Exception ex) { Debug.WriteLine("ERROR :: " + ex.Message); }
-    //    return null!;
-
-    //}
-
     #endregion
 
     #region Get one course
