@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using Infrastructure.Dtos;
 using Infrastructure.Services;
-using Microsoft.AspNetCore.Authentication.BearerToken;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using WebApp.Models.Courses;
@@ -13,13 +10,13 @@ using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
 
-//[Authorize]
-public class CoursesController(HttpClient http, CategoryService categoryService, CourseService courseService, IMapper mapper) : Controller
+public class CoursesController(HttpClient http, CategoryService categoryService, CourseService courseService, IMapper mapper, IConfiguration configuration) : Controller
 {
     private readonly HttpClient _http = http;
     private readonly CategoryService _categoryService = categoryService;
     private readonly CourseService _courseService = courseService;
     private readonly IMapper _mapper = mapper;
+    private readonly IConfiguration _configuration = configuration;
 
     #region Get all courses
 
@@ -110,7 +107,7 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
 
             //return View(courseViewModel);
 
-            var response = await _http.GetAsync($"https://localhost:7279/api/courses/{id}");
+            var response = await _http.GetAsync($"https://localhost:7279/api/courses/{id}?key={_configuration["Api:Key"]}");
             var json = await response.Content.ReadAsStringAsync();
             var courseDto = JsonConvert.DeserializeObject<CourseDto>(json);
 
@@ -197,7 +194,7 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index", "Courses");
-                }                
+                }
             }
             return View(updatedCourseModel);
         }
