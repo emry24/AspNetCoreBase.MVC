@@ -18,17 +18,13 @@
             <a href="#">@Model.Title</a>
         </div>
         <div class="buttons">
-            @*             <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
-            data-bs-title="Favorite">
-            Best Seller
-            </button> *@
+
             @if (Model.IsBestseller == true)
             {
                 <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
                         data-bs-title="Favorite">
                     Best Seller
                 </button>
-                @*                 <p class="best-seller text-s">Best Seller</p> *@
             }
 
             <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top"

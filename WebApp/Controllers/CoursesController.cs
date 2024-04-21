@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Infrastructure.Dtos;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -31,8 +32,7 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
             var viewModel = new CourseViewModel
             {
                 Categories = _mapper.Map<IEnumerable<CategoryModel>>(await _categoryService.GetCategoriesAsync()),
-                //Courses = _mapper.Map<IEnumerable<CourseModel>>(await _courseService.GetCoursesAsync(category, searchQuery)),
-                Courses = courseResult.Courses!.Select(courseDto => _mapper.Map<CourseModel>(courseDto)),
+                Courses = courseResult.Courses!.Select(_mapper.Map<CourseModel>),
 
                 Pagination = new PaginationDto
                 {
@@ -57,28 +57,38 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
     #region Create course
 
     [HttpPost]
-    public async Task<IActionResult> Create(CourseRegistrationFormViewModel viewModel)
+    public async Task<IActionResult> Create(CourseDto courseDto)
     {
         try
         {
             if (ModelState.IsValid)
             {
-                using var http = new HttpClient();
+                var tokenResponse = await _http.SendAsync(new HttpRequestMessage
+                {
+                    RequestUri = new Uri("https://localhost:7279/api/auth"),
+                    Method = HttpMethod.Post
+                });
 
-                var json = JsonConvert.SerializeObject(viewModel);
+                if (tokenResponse.IsSuccessStatusCode)
+                {
+                    HttpContext.Session.SetString("token", await tokenResponse.Content.ReadAsStringAsync());
+                }
+
+                _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
+
+                var json = JsonConvert.SerializeObject(courseDto);
                 using var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await http.PostAsync("https://localhost:7279/api/courses", content);
+                var response = await _http.PostAsync("https://localhost:7279/api/courses", content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index", "Courses");
                 }
             }
 
-            return View(viewModel);
+            return View(courseDto);
         }
         catch (Exception ex) { Debug.WriteLine("ERROR :: " + ex.Message); }
         return null!;
-
     }
 
     #endregion
@@ -155,6 +165,46 @@ public class CoursesController(HttpClient http, CategoryService categoryService,
         return null!;
 
     }
+
+    #endregion
+
+    #region Update Course
+
+    [HttpPost]
+    public async Task<IActionResult> UpdateCourse(int id, CourseModel updatedCourseModel)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                var tokenResponse = await _http.SendAsync(new HttpRequestMessage
+                {
+                    RequestUri = new Uri("https://localhost:7279/api/auth"),
+                    Method = HttpMethod.Post
+                });
+
+                if (tokenResponse.IsSuccessStatusCode)
+                {
+                    HttpContext.Session.SetString("token", await tokenResponse.Content.ReadAsStringAsync());
+                }
+
+                _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
+
+                var json = JsonConvert.SerializeObject(updatedCourseModel);
+                using var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await _http.PutAsync($"https://localhost:7279/api/courses/{id}", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index", "Courses");
+                }                
+            }
+            return View(updatedCourseModel);
+        }
+        catch (Exception ex) { Debug.WriteLine("ERROR :: " + ex.Message); }
+        return null!;
+    }
+
 
     #endregion
 }

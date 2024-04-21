@@ -73,18 +73,28 @@
                     </div>
 
                 </form>
+
                <div class="delete-account">
                     <h5>Delete Account</h5>
                     <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
 
-                    <div id="form-remember" class="checkbox">
-                        <div class="checkbox-group">
-                            <input asp-for="Form!.DeleteAccount" />
-                            <label asp-for="Form!.DeleteAccount"></label>
-                        </div>
-                    </div>
 
-                    <button class="btn btn-danger" type="submit">Delete</button>
+
+                    <form method="post" asp-controller="Account" asp-action="Delete" >
+
+
+
+                        <div id="form-remember" class="checkbox">
+                            <div class="checkbox-group">
+                                <input asp-for="Form!.DeleteAccount" />
+                                <label asp-for="Form!.DeleteAccount"></label>
+                            </div>
+                        </div>
+
+
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+
                 </div> 
 
             </section>

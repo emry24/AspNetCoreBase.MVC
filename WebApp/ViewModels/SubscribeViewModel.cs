@@ -7,6 +7,7 @@ public class SubscribeViewModel
 {
     [Required]
     [Display(Name = "Email", Prompt = "Your Email")]
+
     public string Email { get; set; } = null!;
 
     [Display(Name = "Daily Newletter")]
@@ -27,7 +28,4 @@ public class SubscribeViewModel
     [Display(Name = "Podcasts")]
     public bool Podcasts { get; set; }
 
-    //[Display(Name = "I agree to the Terms & Conditions.>")]
-    //[CheckBoxRequired(ErrorMessage = "You must accept the terms and conditions.")]
-    //public bool IsSubscribed { get; set; } = false;
 }

@@ -46,7 +46,6 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
             {
                 standardRole = "SuperAdmin";
             }
-            //return View(viewModel);
         
             var exists = await _userManager.Users.AnyAsync(x => x.Email == viewModel.Form.Email);
             if (exists)
@@ -86,20 +85,6 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 
         ViewData["ReturnUrl"] = returnUrl ?? Url.Content("~/");
         return View();
-
-        //if (_signInManager.IsSignedIn(User))
-        //{
-        //    return RedirectToAction("Details", "Account");
-        //}
-        //else
-        //{
-        //    var viewModel = new SignInViewModel
-        //    {
-        //        Title = "Sign In"
-        //    };
-
-        //    return View(viewModel);
-        //}
     }
 
     [HttpPost]

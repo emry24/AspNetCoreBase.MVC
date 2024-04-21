@@ -13,6 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRouting(x => x.LowercaseUrls = true);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
+builder.Services.AddSession(x =>
+{
+    x.IdleTimeout = TimeSpan.FromMinutes(20);
+    x.Cookie.IsEssential = true;
+    x.Cookie.HttpOnly = true;
+});
 
 builder.Services.AddAutoMapper(typeof(SettingsAutoMapper));
 
@@ -34,8 +40,6 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
 
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<AddressService>();
-//builder.Services.AddScoped<UserRepository>();
-//builder.Services.AddScoped<UserService
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<CourseService>();
 
@@ -85,6 +89,7 @@ app.UseStatusCodePagesWithReExecute("/error", "?statusCode={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseSession();
 app.UseAuthentication();
 app.UseUserSessionValidation();
 app.UseAuthorization();

@@ -30,7 +30,6 @@ namespace WebApp.Models
 
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone", Prompt = "Enter your phone", Order = 3)]
-        //[Required(ErrorMessage = "Phone is required")]
         public string Phone { get; set; } = null!;
 
         [Display(Name = "Bio", Prompt = "Add a short bio...", Order = 4)]
