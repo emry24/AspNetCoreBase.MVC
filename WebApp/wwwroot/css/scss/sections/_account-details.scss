@@ -10,7 +10,7 @@
 
     aside {
         position: relative;
-        border-right: 1px solid $gray-300;
+        border-right: 1px solid var(--color-gray-300);
         padding-right: 20px;
 
         .profile-image {
@@ -33,7 +33,7 @@
                 bottom: 0%;
                 right: 40%;
                 background-color: white;
-                border: 1px solid $gray-300;
+                border: 1px solid var(--color-gray-300);
                 padding: 2px 8px;
                 border-radius: 50%;
 
@@ -92,7 +92,7 @@
                 padding: 1rem;
 
                 h5 {
-                    color: $theme;
+                    color: var(--color-theme);
                 }
 
                 .content {
@@ -121,7 +121,7 @@
                         grid-area: bio;
 
                         span {
-                            color: $gray-500;
+                            color: var(--color-gray-500);
                             font-weight: 400;
                         }
                     }
@@ -148,7 +148,7 @@
                 padding: 1rem;
 
                 h5 {
-                    color: $theme;
+                    color: var(--color-theme);
                 }
 
                 .content {
@@ -166,7 +166,7 @@
                         grid-area: addressline_2;
 
                         span {
-                            color: $gray-500;
+                            color: var(--color-gray-500);
                             font-weight: 400;
                         }
                     }

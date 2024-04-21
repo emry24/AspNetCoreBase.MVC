@@ -5,8 +5,6 @@
     ViewData["Title"] = "Contact Form";
 }
 
-
-
 <div class="contact-form">
     <form asp-action="ContactForm" asp-controller="Contact" method="post">
         <div class="content">
@@ -26,8 +24,6 @@
             <div id="form-service" class="input-group">
                 <label asp-for="Service">Service <span>(Optional)</span></label>
                 <span asp-validation-for="Service"></span>
-                <!-- <input asp-for="ContactInfo.Service" /> -->
-
             </div>
 
             <select asp-for="Service" class="input-group form-select">

@@ -10,11 +10,10 @@
 
     img {
         position: relative;
-        z-index: -1;
+        z-index: 1;
         width: 100%;
 
         @include sm {
-            
         }
 
         @include lg {

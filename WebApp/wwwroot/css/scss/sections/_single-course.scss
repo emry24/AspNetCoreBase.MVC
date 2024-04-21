@@ -3,7 +3,7 @@
     overflow: hidden;
 
     span {
-        color: $gray-500;
+        color: var(--color-gray-500);
     }
 
     .background-image {
@@ -14,24 +14,21 @@
         overflow: hidden;
         height: 100%;
         background-size: cover;
-        z-index: -1;
+        z-index: 1;
         max-width: none;
         filter: brightness(0.4);
 
         @include md {
-            /*max-width: 100%;*/
             width: 100vw;
             height: auto;
         }
 
         @include xxl {
-            /*max-width: 100%;*/
             width: 100%;
             width: 100vw;
             height: auto;
         }
     }
-
 
     .container {
         position: relative;
@@ -39,19 +36,19 @@
         margin-top: 60px;
 
         h1 {
-            color: $white;
+            color: var(--color-white);
         }
 
         p {
-            color: $white;
+            color: var(--color-white);
         }
 
         .courses-bread {
-            color: $white;
+            color: var(--color-white);
             margin-bottom: 70px;
 
             a {
-                color: $white;
+                color: var(--color-white);
             }
         }
 
@@ -103,7 +100,7 @@
                         display: inline-flex;
                         width: 1px;
                         height: 15px;
-                        background-color: $white;
+                        background-color: var(--color-white);
                         margin-left: 25px;
                         margin-right: 25px;
                     }
@@ -166,11 +163,11 @@
         margin-top: 60px;
 
         h1 {
-            color: $black;
+            color: var(--color-gray-900);
         }
 
         p {
-            color: $black;
+            color: var(--color-gray-900);
         }
 
         .course-description {
@@ -179,11 +176,11 @@
             gap: 50px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Add space between .description and .specifications */
+            justify-content: space-between; 
 
             @include xl {
                 flex-direction: row;
-                justify-content: flex-start; /* Reset justify-content for larger screens if needed */
+                justify-content: flex-start;
             }
 
             .description {
@@ -207,7 +204,7 @@
 
             .specifications {
                 width: 100%;
-                border: 1px solid $gray-400;
+                border: 1px solid var(--color-gray-400);
                 padding: 40px;
                 max-width: 400px;
 
@@ -216,7 +213,7 @@
                     flex-direction: row;
 
                     p {
-                        color: $gray-700;
+                        color: var(--color-gray-700);
                     }
 
                     img {
@@ -231,7 +228,7 @@
                     padding: 10px;
 
                     .text-xl {
-                        color: $gray-700;
+                        color: var(--color-gray-700);
                         text-decoration: line-through;
                     }
                 }
@@ -257,13 +254,15 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    color: $gray-800;
-                    background-color: $white;
+                    color: var(--color-gray-800);
+                    background-color: var(--color-gray-200);
                     border-radius: 50%;
-                    border: 13px solid $gray-100;
+                    border: 13px solid var(--color-gray-100);
 
                     h4 {
                         margin: 30px;
+                        color: var(--color-gray-900);
+                        
                     }
                 }
 
@@ -295,18 +294,18 @@
 
         .creator-text {
             padding: 10px;
-            background-color: $gray-900;
+            background-color: var(--color-black);
 
             @include lg {
                 padding: 80px;
             }
 
             h1 {
-                color: $white;
+                color: var(--color-white);
             }
 
             p {
-                color: $gray-600;
+                color: var(--color-white);
             }
 
             .media-buttons {
@@ -318,7 +317,7 @@
                 }
 
                 .btn-info {
-                    color: $white;
+                    color: var(--color-white);
                     background-color: rgb(60, 120, 233);
                     border: rgb(60, 120, 233);
                 }
